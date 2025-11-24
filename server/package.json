@@ -1,5 +1,5 @@
 {
-  "name": "mindlytools",
+  "name": "server",
   "private": true,
   "version": "0.0.0",
   "type": "module",
