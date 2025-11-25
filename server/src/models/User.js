@@ -9,7 +9,7 @@ const User = sequelize.define("User", {
   name: { type: DataTypes.STRING, allowNull: true },
   picture: { type: DataTypes.STRING, allowNull: true },
 
-  // stored time zone
+  // stored time zones
   timezone: { type: DataTypes.STRING, allowNull: true },
 });
 
