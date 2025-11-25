@@ -1,0 +1,33 @@
+.tool-card {
+  background-color: #151515;
+  border-radius: 14px;
+  border: 1px solid #444;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 200px;
+  transition: border-color 0.2s ease;
+}
+
+.tool-card:hover {
+  border-color: #666;
+}
+
+.tool-card-title {
+  margin-bottom: 8px;
+}
+
+.tool-card-description {
+  color: #aaa;
+}
+
+.tool-card-btn {
+  padding: 10px 16px;
+  background-color: #222;
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: white;
+  width: 120px;
+  margin-top: 15px;
+}
