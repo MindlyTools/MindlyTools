@@ -1,0 +1,100 @@
+/* --- SIDEBAR CONTAINER --- */
+.sidebar {
+  background-color: #151515;
+  border-right: 1px solid #333;
+  padding: 20px 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+/* Open & collapsed widths */
+.sidebar.open {
+  width: 260px;
+}
+
+.sidebar.collapsed {
+  width: 80px;
+}
+
+/* --- TOGGLE BUTTON --- */
+.sidebar-toggle {
+  width: 40px;
+  height: 40px;
+  background-color: #222;
+  border-radius: 8px;
+  border: 1px solid #444;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+/* --- PROFILE IMAGE --- */
+.sidebar-profile {
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 10px;
+  width: 100px;
+  height: 100px;
+  transition: all 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-profile {
+  width: 50px;
+  height: 50px;
+}
+
+/* --- USERNAME & TIMEZONE --- */
+.sidebar-username {
+  color: white;
+  margin-bottom: 6px;
+  text-align: center;
+}
+
+.sidebar-timezone {
+  color: #aaa;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+/* --- MAIN BUTTON --- */
+.sidebar-main-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #222;
+  border: 1px solid #444;
+  border-radius: 8px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+/* --- SPACER (push logout to bottom) --- */
+.sidebar-spacer {
+  flex: 1;
+}
+
+/* --- LOGOUT BUTTON --- */
+.sidebar-logout-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #ff4d4f;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20px;
+  transition: padding 0.2s ease;
+}
+
+.sidebar.collapsed .sidebar-logout-btn {
+  padding: 8px;
+}
+
+/* Hide all text automatically when collapsed */
+.sidebar.collapsed .sidebar-username,
+.sidebar.collapsed .sidebar-timezone,
+.sidebar.collapsed .sidebar-main-btn {
+  display: none;
+}

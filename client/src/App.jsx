@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useEffect, useState } from "react";
+import { onAuthStateChanged } from "firebase/auth";
+
+import { auth } from "./firebase";
+import Login from "./pages/Login";
+import Home from "./pages/Home";
+import ChooseUsername from "./pages/ChooseUsername";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [firebaseUser, setFirebaseUser] = useState(null);
+  const [backendUser, setBackendUser] = useState(null);
+  const [needsUsername, setNeedsUsername] = useState(false);
+  const [loading, setLoading] = useState(true);
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, async (user) => {
+      setFirebaseUser(user);
+
+      if (!user) {
+        setBackendUser(null);
+        setNeedsUsername(false);
+        setLoading(false);
+        return;
+      }
+
+      const token = await user.getIdToken();
+
+      const res = await fetch("http://localhost:5000/api/auth/google", {
+        method: "POST",
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      const data = await res.json();
+
+      if (data.needsUsername) {
+        setNeedsUsername(true);
+      } else {
+        setBackendUser(data.user); // <-- saves the username
+        setNeedsUsername(false);
+      }
+
+      setLoading(false);
+    });
+
+    return () => unsubscribe();
+  }, []);
+
+  if (loading) return <div style={{ color: "white" }}>Loading...</div>;
+  if (!firebaseUser) return <Login />;
+  if (needsUsername)
+    return <ChooseUsername onComplete={() => window.location.reload()} />;
+
+  return <Home user={backendUser} />;
 }
 
-export default App
+export default App;
