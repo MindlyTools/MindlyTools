@@ -1,7 +1,5 @@
 # MindlyTools
 
-This is Mitch's branch trying to convert to firebase
-
 MindlyTools is a multipurpose website used to access multiple useless tools
 
 # Installation

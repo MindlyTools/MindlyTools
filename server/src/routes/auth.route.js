@@ -1,13 +1,12 @@
 import express from "express";
 import admin from "../config/firebase.js";
-import User from "../models/User.js";
 
 const router = express.Router();
+const db = admin.database();
 
 /**
- * Google Login Route
- * Frontend sends Firebase ID token in Authorization header
- * Backend verifies token and checks whether username exists
+ * POST /api/auth/google
+ * Verifies Firebase token + stores/loads user profile
  */
 router.post("/google", async (req, res) => {
   try {
@@ -17,90 +16,71 @@ router.post("/google", async (req, res) => {
     const token = header.split(" ")[1];
     const decoded = await admin.auth().verifyIdToken(token);
 
-    let user = await User.findOne({ where: { uid: decoded.uid } });
+    const uid = decoded.uid;
+    const userRef = db.ref(`users/${uid}`);
+    const snapshot = await userRef.once("value");
+    const user = snapshot.val();
 
-    // User does not exist → create with null username
+    // FIRST LOGIN → create user profile
     if (!user) {
-      user = await User.create({
-        uid: decoded.uid,
+      await userRef.set({
         email: decoded.email,
         name: decoded.name || decoded.displayName || null,
         picture: decoded.picture || decoded.photoURL || null,
-        username: null
+        username: null,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       });
 
-      return res.json({ newUser: true, needsUsername: true });
+      return res.json({ needsUsername: true });
     }
 
-    // User exists but has no username → choose username page
+    // USER EXISTS BUT NO USERNAME
     if (!user.username) {
       return res.json({ needsUsername: true });
     }
 
-    // Login successful
+    // USER EXISTS + COMPLETE PROFILE
     return res.json({
       success: true,
-      user
+      user: { uid, ...user }
     });
 
   } catch (err) {
     console.error(err);
-    return res.status(500).json({ error: "Auth failed" });
+    res.status(500).json({ error: "Auth failed" });
   }
 });
 
+
 /**
- * Set Username Route
- * Frontend sends: { uid, username }
- * Saves username for new users
+ * POST /api/auth/set-username
+ * Save username to Firebase
  */
 router.post("/set-username", async (req, res) => {
   try {
     const { uid, username } = req.body;
 
-    if (!uid || !username)
-      return res.status(400).json({ error: "Missing uid or username" });
+    if (!uid || !username) {
+      return res.status(400).json({ error: "Missing fields" });
+    }
 
-    // Username must be unique
-    const exists = await User.findOne({ where: { username } });
-    if (exists)
-      return res.status(400).json({ error: "Username already taken" });
+    const usersSnapshot = await admin.database().ref("users").once("value");
+    const allUsers = usersSnapshot.val() || {};
 
-    const user = await User.findOne({ where: { uid } });
-    if (!user)
-      return res.status(404).json({ error: "User not found" });
+    // ensure username is unique
+    for (const key in allUsers) {
+      if (allUsers[key].username === username) {
+        return res.status(400).json({ error: "Username already taken" });
+      }
+    }
 
-    user.username = username;
-    await user.save();
+    await admin.database().ref(`users/${uid}/username`).set(username);
 
-    return res.json({ success: true, user });
-
-  } catch (err) {
-    console.error(err);
-    return res.status(500).json({ error: "Failed to save username" });
-  }
-});
-
-/**
- * Protected route: GET /api/auth/me
- * Returns logged-in user
- */
-router.get("/me", async (req, res) => {
-  try {
-    const header = req.headers.authorization;
-    if (!header) return res.status(401).json({ error: "Missing token" });
-
-    const token = header.split(" ")[1];
-    const decoded = await admin.auth().verifyIdToken(token);
-
-    const user = await User.findOne({ where: { uid: decoded.uid } });
-    if (!user) return res.status(404).json({ error: "User not found" });
-
-    return res.json({ authenticated: true, user });
+    res.json({ success: true });
 
   } catch (err) {
     console.error(err);
-    return res.status(401).json({ error: "Invalid token" });
+    res.status(500).json({ error: "Failed to set username" });
   }
 });
 
