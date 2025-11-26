@@ -1,5 +1,6 @@
 import express from "express";
 import admin from "../config/firebase.js";
+import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 const db = admin.database();
@@ -34,12 +35,12 @@ router.post("/google", async (req, res) => {
       return res.json({ needsUsername: true });
     }
 
-    // USER EXISTS BUT NO USERNAME
+    // USER EXISTS BUT NEEDS USERNAME
     if (!user.username) {
       return res.json({ needsUsername: true });
     }
 
-    // USER EXISTS + COMPLETE PROFILE
+    // USER EXISTS + PROFILE COMPLETE
     return res.json({
       success: true,
       user: { uid, ...user }
@@ -54,29 +55,32 @@ router.post("/google", async (req, res) => {
 
 /**
  * POST /api/auth/set-username
- * Save username to Firebase
+ * Securely saves username (cannot spoof UID)
  */
-router.post("/set-username", async (req, res) => {
+router.post("/set-username", verifyToken, async (req, res) => {
   try {
-    const { uid, username } = req.body;
+    const { username } = req.body;
 
-    if (!uid || !username) {
-      return res.status(400).json({ error: "Missing fields" });
+    if (!username) {
+      return res.status(400).json({ error: "Username is required" });
     }
 
+    const uid = req.uid; // Comes from middleware
+
+    // Fetch all users to ensure username is unique
     const usersSnapshot = await admin.database().ref("users").once("value");
     const allUsers = usersSnapshot.val() || {};
 
-    // ensure username is unique
     for (const key in allUsers) {
       if (allUsers[key].username === username) {
         return res.status(400).json({ error: "Username already taken" });
       }
     }
 
+    // Save username
     await admin.database().ref(`users/${uid}/username`).set(username);
 
-    res.json({ success: true });
+    return res.json({ success: true });
 
   } catch (err) {
     console.error(err);

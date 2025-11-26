@@ -1,0 +1,54 @@
+.userprofile-container {
+  display: flex;
+  height: 100vh;
+  color: white;
+}
+
+.userprofile-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.userprofile-picture-section {
+  margin-bottom: 30px;
+}
+
+.userprofile-picture {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #333;
+  display: block;
+}
+
+.userprofile-file-input {
+  margin-top: 10px;
+}
+
+.userprofile-field {
+  margin-bottom: 20px;
+}
+
+.userprofile-field label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.userprofile-input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 6px;
+  border: 1px solid #444;
+  background: #1a1a1a;
+  color: white;
+}
+
+.userprofile-save-btn {
+  padding: 12px 20px;
+  background: #333;
+  border: 1px solid #555;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+}

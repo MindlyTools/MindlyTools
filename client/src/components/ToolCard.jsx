@@ -1,6 +1,7 @@
 import "../styles/toolcard.css";
+import { Link } from "react-router-dom";
 
-export default function ToolCard({ title, description }) {
+export default function ToolCard({ title, description, link }) {
   return (
     <div className="tool-card">
       <div>
@@ -8,7 +9,9 @@ export default function ToolCard({ title, description }) {
         <p className="tool-card-description">{description}</p>
       </div>
 
-      <button className="tool-card-btn">Go to Tool</button>
+      <Link to={link || "#"}>
+        <button className="tool-card-btn">Go to Tool</button>
+      </Link>
     </div>
   );
 }

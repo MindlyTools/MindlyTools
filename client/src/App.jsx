@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { Routes, Route } from "react-router-dom";
 
 import { auth } from "./firebase";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import ChooseUsername from "./pages/ChooseUsername";
+import ShoppingList from "./pages/ShoppingList";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const [firebaseUser, setFirebaseUser] = useState(null);
@@ -28,14 +31,20 @@ function App() {
       const res = await fetch("http://localhost:5000/api/auth/google", {
         method: "POST",
         headers: { Authorization: `Bearer ${token}` },
-      });
+      }).catch(() => null);
+
+      if (!res) {
+        setFirebaseUser(null);
+        setLoading(false);
+        return;
+      }
 
       const data = await res.json();
 
       if (data.needsUsername) {
         setNeedsUsername(true);
       } else {
-        setBackendUser(data.user); // <-- saves the username
+        setBackendUser(data.user);
         setNeedsUsername(false);
       }
 
@@ -47,10 +56,17 @@ function App() {
 
   if (loading) return <div style={{ color: "white" }}>Loading...</div>;
   if (!firebaseUser) return <Login />;
+
   if (needsUsername)
     return <ChooseUsername onComplete={() => window.location.reload()} />;
 
-  return <Home user={backendUser} />;
+  return (
+    <Routes>
+      <Route path="/" element={<Home user={backendUser} />} />
+      <Route path="/shopping" element={<ShoppingList user={backendUser} />} />
+      <Route path="/profile" element={<UserProfile user={backendUser} />} />
+    </Routes>
+  );
 }
 
 export default App;

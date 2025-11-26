@@ -1,0 +1,83 @@
+/* Container layout */
+.shopping-container {
+  display: flex;
+  height: 100vh;
+  color: white;
+  background: #0f0f0f;
+}
+
+/* Main content area */
+.shopping-content {
+  flex: 1;
+  padding: 40px;
+}
+
+/* Input + Add button row */
+.shopping-input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+/* Input box */
+.shopping-input {
+  flex: 1;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: white;
+}
+
+.shopping-input::placeholder {
+  color: #777;
+}
+
+/* Add button */
+.shopping-add-btn {
+  padding: 12px 20px;
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.shopping-add-btn:hover {
+  background: #444;
+}
+
+/* List */
+.shopping-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+/* Each item */
+.shopping-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1a1a1a;
+  padding: 14px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  margin-bottom: 12px;
+}
+
+/* Delete button */
+.shopping-delete-btn {
+  background: #ff4444;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  color: white;
+  cursor: pointer;
+}
+
+.shopping-delete-btn:hover {
+  background: #ff2222;
+}

@@ -36,7 +36,12 @@ export default function Home({ user }) {
             title="Todo List"
             description="Simple tool to manage tasks"
           />
-          <ToolCard title="Tool 2" description="Description" />
+          <ToolCard
+            title="Shopping List"
+            description="real-time synced shopping list"
+            link="/shopping"
+          />
+
           <ToolCard title="Tool 3" description="Description" />
           <ToolCard title="Tool 4" description="Description" />
           <ToolCard title="Tool 5" description="Description" />

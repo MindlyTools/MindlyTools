@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import "../styles/sidebar.css";
+import { Link } from "react-router-dom";
 
 export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
   const [timezone, setTimezone] = useState("");
@@ -45,10 +46,21 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
       {/* Timezone */}
       {sidebarOpen && <p className="sidebar-timezone">🕓 {timezone}</p>}
 
-      {/* Main button */}
-      {sidebarOpen && <button className="sidebar-main-btn">Sidebar</button>}
+      {/* Home Button  */}
+      <Link to="/" style={{ width: "100%", textDecoration: "none" }}>
+        <button className="sidebar-main-btn">
+          {sidebarOpen ? "Home" : "🏠"}
+        </button>
+      </Link>
 
       <div className="sidebar-spacer"></div>
+
+      {/* More Options (User Profile) */}
+      <Link to="/profile" style={{ width: "100%", textDecoration: "none" }}>
+        <button className="sidebar-main-btn">
+          {sidebarOpen ? "More Options" : "⋯"}
+        </button>
+      </Link>
 
       {/* Logout Button */}
       <button className="sidebar-logout-btn" onClick={handleLogout}>
