@@ -27,7 +27,10 @@ function App() {
 
       const res = await fetch("http://localhost:5000/api/auth/google", {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
       });
 
       const data = await res.json();
@@ -35,7 +38,7 @@ function App() {
       if (data.needsUsername) {
         setNeedsUsername(true);
       } else {
-        setBackendUser(data.user); // <-- saves the username
+        setBackendUser(data.user);
         setNeedsUsername(false);
       }
 

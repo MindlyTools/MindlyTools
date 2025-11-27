@@ -54,27 +54,31 @@ router.post("/google", async (req, res) => {
 
 /**
  * POST /api/auth/set-username
- * Save username to Firebase
+ * Saves username securely
  */
 router.post("/set-username", async (req, res) => {
   try {
-    const { uid, username } = req.body;
+    const header = req.headers.authorization;
+    if (!header) return res.status(401).json({ error: "Missing token" });
 
-    if (!uid || !username) {
-      return res.status(400).json({ error: "Missing fields" });
+    const token = header.split(" ")[1];
+    const decoded = await admin.auth().verifyIdToken(token);
+    const uid = decoded.uid;
+
+    const { username } = req.body;
+    if (!username) return res.status(400).json({ error: "Missing username" });
+
+    // Check uniqueness via lookup
+    const existing = await db.ref(`usernames/${username}`).once("value");
+    if (existing.exists()) {
+      return res.status(400).json({ error: "Username already taken" });
     }
 
-    const usersSnapshot = await admin.database().ref("users").once("value");
-    const allUsers = usersSnapshot.val() || {};
+    // Save user’s username
+    await db.ref(`users/${uid}/username`).set(username);
 
-    // ensure username is unique
-    for (const key in allUsers) {
-      if (allUsers[key].username === username) {
-        return res.status(400).json({ error: "Username already taken" });
-      }
-    }
-
-    await admin.database().ref(`users/${uid}/username`).set(username);
+    // Save reverse lookup
+    await db.ref(`usernames/${username}`).set(uid);
 
     res.json({ success: true });
 
