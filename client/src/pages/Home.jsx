@@ -34,11 +34,7 @@ export default function Home({ user }) {
         >
           <ToolCard
             title="Todo List"
-            description="Simple tool to manage tasks"
-          />
-          <ToolCard
-            title="Shopping List"
-            description="real-time synced shopping list"
+            description="real-time synced Todo list"
             link="/shopping"
           />
 
@@ -48,6 +44,7 @@ export default function Home({ user }) {
             link="/habits"
           />
 
+          <ToolCard title="Tool 3" description="Description" />
           <ToolCard title="Tool 4" description="Description" />
           <ToolCard title="Tool 5" description="Description" />
           <ToolCard title="Tool 6" description="Description" />

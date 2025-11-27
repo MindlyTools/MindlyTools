@@ -60,7 +60,8 @@ export default function ShoppingList({ user }) {
       />
 
       <div style={{ flex: 1, padding: "40px", color: "white" }}>
-        <h1>Shopping List</h1>
+        {/* change the name if needed */}
+        <h1>Basic Test List</h1>
 
         <div>
           <input
