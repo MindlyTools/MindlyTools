@@ -1,32 +1,36 @@
 .tool-card {
-  background-color: #151515;
+  /* background-color: #288a105c; */
+  background-color: #079d7c0d;
   border-radius: 14px;
-  border: 1px solid #444;
+  border: 3px solid black;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 200px;
   transition: border-color 0.2s ease;
+  /* box-shadow: 7px 6px 18px 2px rgb(42 84 70 / 81%); */
 }
 
 .tool-card:hover {
-  border-color: #666;
+  /* border-color: #0a385c; */
+  border-color: black;
+  box-shadow: 10px 10px 22px 3px #0a385c;
 }
 
 .tool-card-title {
-  margin-bottom: 8px;
+  margin-bottom: 20px;
+  font-size: 26px;
 }
 
 .tool-card-description {
-  color: #aaa;
+  color: black;
+  font-size: 19px;
 }
 
 .tool-card-btn {
   padding: 10px 16px;
-  background-color: #222;
   border: 1px solid #555;
-  border-radius: 6px;
   color: white;
   width: 120px;
   margin-top: 15px;

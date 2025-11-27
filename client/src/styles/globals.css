@@ -7,13 +7,23 @@
 
 /* GLOBAL THEME */
 body {
-  background-color: #0f0f0f;
-  color: white;
+  background-color: #0099ad2b;
+  color: black;
   font-family: "Inter", sans-serif;
+  text-align: center;
 }
 
 /* Remove button styles */
 button {
   font-family: inherit;
   cursor: pointer;
+  margin: 0 auto;
 }
+
+.btn {
+  background-color: #0a385c;
+  border-radius: 7px;
+  font-size: 15px;
+}
+
+/* ****************************************************************************** */
