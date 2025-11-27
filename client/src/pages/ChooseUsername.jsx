@@ -4,30 +4,42 @@ import { auth } from "../firebase";
 export default function ChooseUsername({ onComplete }) {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const saveUsername = async () => {
     setError("");
+    setLoading(true);
 
     if (!username.trim()) {
       setError("Username cannot be empty");
+      setLoading(false);
       return;
     }
 
-    const uid = auth.currentUser.uid;
+    try {
+      const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("http://localhost:5000/api/auth/set-username", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ uid, username }),
-    });
+      const res = await fetch("http://localhost:5000/api/auth/set-username", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify({ username }),
+      });
 
-    const data = await res.json();
+      const data = await res.json();
 
-    if (data.error) {
-      setError(data.error);
-    } else {
-      onComplete(); // tells App.jsx username is done
+      if (data.error) {
+        setError(data.error);
+      } else {
+        onComplete();
+      }
+    } catch (err) {
+      setError("Something went wrong, try again");
     }
+
+    setLoading(false);
   };
 
   return (
@@ -59,7 +71,7 @@ export default function ChooseUsername({ onComplete }) {
         <input
           type="text"
           value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) => setUsername(e.target.value.trim())}
           placeholder="Enter username"
           style={{
             width: "100%",
@@ -68,6 +80,8 @@ export default function ChooseUsername({ onComplete }) {
             borderRadius: "6px",
             border: "1px solid #444",
             marginBottom: "10px",
+            background: "#111",
+            color: "white",
           }}
         />
 
@@ -77,17 +91,18 @@ export default function ChooseUsername({ onComplete }) {
 
         <button
           onClick={saveUsername}
+          disabled={loading}
           style={{
             width: "100%",
             padding: "12px",
-            backgroundColor: "#333",
+            backgroundColor: loading ? "#555" : "#333",
             borderRadius: "6px",
             border: "1px solid #555",
             color: "white",
-            cursor: "pointer",
+            cursor: loading ? "not-allowed" : "pointer",
           }}
         >
-          Save Username
+          {loading ? "Saving..." : "Save Username"}
         </button>
       </div>
     </div>
