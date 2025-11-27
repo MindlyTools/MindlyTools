@@ -8,7 +8,7 @@ export default function ToolCard({ title, description }) {
         <p className="tool-card-description">{description}</p>
       </div>
 
-      <button className="tool-card-btn">Go to Tool</button>
+      <button className="tool-card-btn btn ripple">Go to Tool</button>
     </div>
   );
 }

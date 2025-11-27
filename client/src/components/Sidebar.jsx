@@ -17,10 +17,13 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
   };
 
   return (
-    <div className={`sidebar ${sidebarOpen ? "open" : "collapsed"}`}>
+    <div
+      className={`sidebar ${sidebarOpen ? "open" : "collapsed"}`}
+      style={{ paddingTop: "90px" }}
+    >
       {/* Hamburger Toggle */}
       <button
-        className="sidebar-toggle"
+        className="sidebar-toggle btn"
         onClick={() => setSidebarOpen(!sidebarOpen)}
       >
         ☰
@@ -46,7 +49,7 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
       {sidebarOpen && <p className="sidebar-timezone">🕓 {timezone}</p>}
 
       {/* Main button */}
-      {sidebarOpen && <button className="sidebar-main-btn">Sidebar</button>}
+      {sidebarOpen && <button className="sidebar-main-btn btn">Sidebar</button>}
 
       <div className="sidebar-spacer"></div>
 
