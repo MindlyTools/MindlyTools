@@ -42,7 +42,12 @@ export default function Home({ user }) {
             link="/shopping"
           />
 
-          <ToolCard title="Tool 3" description="Description" />
+          <ToolCard
+            title="Habit Tracker"
+            description="Track your daily habits"
+            link="/habits"
+          />
+
           <ToolCard title="Tool 4" description="Description" />
           <ToolCard title="Tool 5" description="Description" />
           <ToolCard title="Tool 6" description="Description" />

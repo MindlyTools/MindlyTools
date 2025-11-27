@@ -55,32 +55,33 @@ router.post("/google", async (req, res) => {
 
 /**
  * POST /api/auth/set-username
- * Securely saves username (cannot spoof UID)
+ * Saves username securely
  */
-router.post("/set-username", verifyToken, async (req, res) => {
+router.post("/set-username", async (req, res) => {
   try {
+    const header = req.headers.authorization;
+    if (!header) return res.status(401).json({ error: "Missing token" });
+
+    const token = header.split(" ")[1];
+    const decoded = await admin.auth().verifyIdToken(token);
+    const uid = decoded.uid;
+
     const { username } = req.body;
+    if (!username) return res.status(400).json({ error: "Missing username" });
 
-    if (!username) {
-      return res.status(400).json({ error: "Username is required" });
+    // Check uniqueness via lookup
+    const existing = await db.ref(`usernames/${username}`).once("value");
+    if (existing.exists()) {
+      return res.status(400).json({ error: "Username already taken" });
     }
 
-    const uid = req.uid; // Comes from middleware
+    // Save user’s username
+    await db.ref(`users/${uid}/username`).set(username);
 
-    // Fetch all users to ensure username is unique
-    const usersSnapshot = await admin.database().ref("users").once("value");
-    const allUsers = usersSnapshot.val() || {};
+    // Save reverse lookup
+    await db.ref(`usernames/${username}`).set(uid);
 
-    for (const key in allUsers) {
-      if (allUsers[key].username === username) {
-        return res.status(400).json({ error: "Username already taken" });
-      }
-    }
-
-    // Save username
-    await admin.database().ref(`users/${uid}/username`).set(username);
-
-    return res.json({ success: true });
+    res.json({ success: true });
 
   } catch (err) {
     console.error(err);

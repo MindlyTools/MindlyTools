@@ -9,6 +9,9 @@ import ChooseUsername from "./pages/ChooseUsername";
 import ShoppingList from "./pages/ShoppingList";
 import UserProfile from "./pages/UserProfile";
 
+import HabitTracker from "./pages/HabitTracker";
+import HabitStats from "./pages/HabitStats";
+
 function App() {
   const [firebaseUser, setFirebaseUser] = useState(null);
   const [backendUser, setBackendUser] = useState(null);
@@ -30,14 +33,11 @@ function App() {
 
       const res = await fetch("http://localhost:5000/api/auth/google", {
         method: "POST",
-        headers: { Authorization: `Bearer ${token}` },
-      }).catch(() => null);
-
-      if (!res) {
-        setFirebaseUser(null);
-        setLoading(false);
-        return;
-      }
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
 
       const data = await res.json();
 
@@ -65,6 +65,12 @@ function App() {
       <Route path="/" element={<Home user={backendUser} />} />
       <Route path="/shopping" element={<ShoppingList user={backendUser} />} />
       <Route path="/profile" element={<UserProfile user={backendUser} />} />
+
+      <Route path="/habits" element={<HabitTracker user={backendUser} />} />
+      <Route
+        path="/habits/:id/:range"
+        element={<HabitStats user={backendUser} />}
+      />
     </Routes>
   );
 }

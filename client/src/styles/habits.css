@@ -1,0 +1,79 @@
+.habit-container {
+  display: flex;
+  height: 100vh;
+  color: white;
+}
+
+.habit-content {
+  flex: 1;
+  padding: 40px;
+}
+
+.habit-input-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.habit-input {
+  flex: 1;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #333;
+  background: #1a1a1a;
+  color: white;
+}
+
+.habit-add-btn {
+  padding: 12px 18px;
+  background: #333;
+  border: 1px solid #555;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+}
+
+.habit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 600px;
+}
+
+.habit-card {
+  background: #1a1a1a;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #333;
+}
+
+.habit-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.habit-streak {
+  margin-top: 10px;
+  color: #ddd;
+}
+
+.habit-history {
+  display: flex;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.history-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+}
+
+.history-dot.on {
+  background: #4caf50;
+}
+
+.history-dot.off {
+  background: #444;
+}
