@@ -1,5 +1,8 @@
 # MindlyTools
 
+> [!IMPORTANT]
+> This project is still in development!
+
 ![A screenshot showcasing the website in development](./assets/showcase.png)
 
 MindlyTools is a multipurpose website used to access multiple useless tools
@@ -17,21 +20,29 @@ Some of those Tools include:
 This project uses:
 
 React 19
+
 CSS3
+
 JavaScript
+
 Firebase
+
 
 # Credits
 
 ## Front end
 
 Mamta - Css and styling
+
 David - Css Styling, colourschemeing and positioning
+
 
 ## Backend
 
 Mitch - Project cleanup, React routing, templates, multiple tools such as a calculator.
+
 Hamza - Firebase Auth and Validation
+
 
 ## Extra
 
