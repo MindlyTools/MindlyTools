@@ -6,7 +6,7 @@ import { auth } from "./firebase";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import ChooseUsername from "./pages/ChooseUsername";
-import ShoppingList from "./pages/ShoppingList";
+import TodoList from "./pages/ToDoList";
 import UserProfile from "./pages/UserProfile";
 
 import HabitTracker from "./pages/HabitTracker";
@@ -63,7 +63,7 @@ function App() {
   return (
     <Routes>
       <Route path="/" element={<Home user={backendUser} />} />
-      <Route path="/shopping" element={<ShoppingList user={backendUser} />} />
+      <Route path="/todolist" element={<TodoList user={backendUser} />} />
       <Route path="/profile" element={<UserProfile user={backendUser} />} />
 
       <Route path="/habits" element={<HabitTracker user={backendUser} />} />

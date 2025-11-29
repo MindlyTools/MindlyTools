@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
-import "../styles/ShoppingList.css";
+import "../styles/todolist.css";
 
-export default function ShoppingList({ user }) {
+export default function ToDoList({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [items, setItems] = useState({});
   const [text, setText] = useState("");
@@ -11,7 +11,7 @@ export default function ShoppingList({ user }) {
   const loadItems = async () => {
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("http://localhost:5000/api/shopping", {
+    const res = await fetch("http://localhost:5000/api/todolist", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -23,7 +23,7 @@ export default function ShoppingList({ user }) {
     if (!text.trim()) return;
     const token = await auth.currentUser.getIdToken();
 
-    await fetch("http://localhost:5000/api/shopping", {
+    await fetch("http://localhost:5000/api/todolist", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ export default function ShoppingList({ user }) {
   const deleteItem = async (id) => {
     const token = await auth.currentUser.getIdToken();
 
-    await fetch(`http://localhost:5000/api/shopping/${id}`, {
+    await fetch(`http://localhost:5000/api/todolist/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

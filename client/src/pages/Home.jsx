@@ -35,7 +35,7 @@ export default function Home({ user }) {
           <ToolCard
             title="Todo List"
             description="real-time synced Todo list"
-            link="/shopping"
+            link="/todolist"
           />
 
           <ToolCard

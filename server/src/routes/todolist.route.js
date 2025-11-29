@@ -6,7 +6,7 @@ const router = express.Router();
 
 // GET all items
 router.get("/", verifyToken, async (req, res) => {
-  const ref = admin.database().ref(`shopping/${req.uid}`);
+  const ref = admin.database().ref(`todolist/${req.uid}`);
   const snapshot = await ref.once("value");
   res.json(snapshot.val() || {});
 });
@@ -16,7 +16,7 @@ router.post("/", verifyToken, async (req, res) => {
   const { text } = req.body;
   if (!text) return res.status(400).json({ error: "Missing text" });
 
-  const ref = admin.database().ref(`shopping/${req.uid}`);
+  const ref = admin.database().ref(`todolist/${req.uid}`);
   const newItem = await ref.push({ text });
 
   res.json({ id: newItem.key, text });
@@ -24,7 +24,7 @@ router.post("/", verifyToken, async (req, res) => {
 
 // DELETE item
 router.delete("/:id", verifyToken, async (req, res) => {
-  const ref = admin.database().ref(`shopping/${req.uid}/${req.params.id}`);
+  const ref = admin.database().ref(`todolist/${req.uid}/${req.params.id}`);
   await ref.remove();
   res.json({ success: true });
 });
