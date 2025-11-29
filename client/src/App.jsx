@@ -4,7 +4,6 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./firebase";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
-import ChooseUsername from "./pages/ChooseUsername";
 
 function App() {
   const [firebaseUser, setFirebaseUser] = useState(null);
@@ -18,7 +17,6 @@ function App() {
 
       if (!user) {
         setBackendUser(null);
-        setNeedsUsername(false);
         setLoading(false);
         return;
       }
@@ -35,13 +33,6 @@ function App() {
 
       const data = await res.json();
 
-      if (data.needsUsername) {
-        setNeedsUsername(true);
-      } else {
-        setBackendUser(data.user);
-        setNeedsUsername(false);
-      }
-
       setLoading(false);
     });
 
@@ -50,8 +41,6 @@ function App() {
 
   if (loading) return <div style={{ color: "white" }}>Loading...</div>;
   if (!firebaseUser) return <Login />;
-  if (needsUsername)
-    return <ChooseUsername onComplete={() => window.location.reload()} />;
 
   return <Home user={backendUser} />;
 }

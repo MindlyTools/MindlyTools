@@ -32,32 +32,44 @@ export default function Home({ user }) {
 
           <div className="tool-container">
             <TiltedCard
-            // imageSrc="https://i.scdn.co/image/ab67616d0000b273d9985092cd88bffd97653b58"
-            // altText="Kendrick Lamar - GNX Album Cover"
-            // captionText="Kendrick Lamar - GNX"
-            // containerHeight="300px"
-            // containerWidth="300px"
-            // imageHeight="300px"
-            // imageWidth="300px"
-            // rotateAmplitude={12}
-            // scaleOnHover={1.2}
-            // showMobileWarning={false}
-            // showTooltip={true}
-            // displayOverlayContent={true}
-            // overlayContent={
-            //   <p className="tilted-card-demo-text">Kendrick Lamar - GNX</p>
-            // }
-            >
-              <ToolCard
-                title="Todo List"
-                description="Simple tool to manage tasks"
-              />
-            </TiltedCard>
-            <ToolCard title="Tool 2" description="Description" />
-            <ToolCard title="Tool 3" description="Description" />
-            <ToolCard title="Tool 4" description="Description" />
-            <ToolCard title="Tool 5" description="Description" />
-            <ToolCard title="Tool 6" description="Description" />
+              displayOverlayContent={true}
+              overlayContent={
+                <ToolCard
+                  title="Todo List"
+                  description="Simple tool to manage tasks"
+                />
+              }
+            />
+            <TiltedCard
+              displayOverlayContent={true}
+              overlayContent={
+                <ToolCard title="Tool 2" description="Description" />
+              }
+            />
+            <TiltedCard
+              displayOverlayContent={true}
+              overlayContent={
+                <ToolCard title="Tool 3" description="Description" />
+              }
+            />
+            <TiltedCard
+              displayOverlayContent={true}
+              overlayContent={
+                <ToolCard title="Tool 4" description="Description" />
+              }
+            />
+            <TiltedCard
+              displayOverlayContent={true}
+              overlayContent={
+                <ToolCard title="Tool 5" description="Description" />
+              }
+            />
+            <TiltedCard
+              displayOverlayContent={true}
+              overlayContent={
+                <ToolCard title="Tool 6" description="Description" />
+              }
+            />
           </div>
         </div>
         <Sidebar
