@@ -1,4 +1,5 @@
 import GoogleLoginButton from "../components/GoogleLoginButton";
+import Logo from "../components/Logo"
 import "../styles/login.css";
 
 export default function Login() {
@@ -10,7 +11,7 @@ export default function Login() {
 
       <div className="login-card">
         <header className="card-header">
-          <h1 className="card-title">MindlyTools</h1>
+          <Logo />
         </header>
 
         <section className="card-body">
