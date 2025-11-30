@@ -1,17 +1,18 @@
 import { useState } from "react";
 import Header from "../components/Header";
+import Footer from "../components/Footer";
 import Sidebar from "../components/Sidebar";
 import ToolCard from "../components/ToolCard";
-import Footer from "../components/Footer";
-import "../styles/home.css";
-import "../styles/globals.css";
 import TiltedCard from "../components/TiltedCard";
+import Background from "../components/Background";
+import "../styles/home.css";
 
 export default function Home({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
     <>
+    <Background>
       <Header />
       <div style={{ display: "flex" }}>
         {/* Main Content */}
@@ -79,6 +80,7 @@ export default function Home({ user }) {
         />
       </div>
       <Footer />
+    </Background>
     </>
   );
 }
