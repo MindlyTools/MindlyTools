@@ -10,7 +10,7 @@ const springValues = {
 
 export default function TiltedCard({
   imageSrc,
-  altText = "Tilted card image",
+
   captionText = "",
   containerHeight = "300px",
   containerWidth = "100%",
@@ -94,7 +94,7 @@ export default function TiltedCard({
       <motion.div
         className="tilted-card-inner"
         style={{
-          width: imageWidth,
+          width: "100%",
           height: imageHeight,
           rotateX,
           rotateY,
@@ -103,12 +103,11 @@ export default function TiltedCard({
       >
         <motion.img
           src={imageSrc}
-          alt={altText}
           className="tilted-card-img"
-          style={{
-            width: imageWidth,
-            height: imageHeight,
-          }}
+          //   style={{
+          //     width: imageWidth,
+          //     height: imageHeight,
+          //   }}
         />
 
         {displayOverlayContent && overlayContent && (
