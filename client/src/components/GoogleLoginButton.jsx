@@ -8,8 +8,8 @@ export default function GoogleLoginButton() {
       const result = await signInWithPopup(auth, googleProvider);
       const token = await result.user.getIdToken();
 
-      console.log("Google User:", result.user);
-      console.log("Firebase Token:", token);
+      // console.log("Google User:", result.user);
+      // console.log("Firebase Token:", token);
 
       alert("Login successful!");
     } catch (error) {
