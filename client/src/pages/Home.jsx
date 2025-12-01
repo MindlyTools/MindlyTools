@@ -1,35 +1,28 @@
-import { useState } from "react";
-import Header from "../components/Header";
-import Footer from "../components/Footer";
-import Sidebar from "../components/Sidebar";
+import Layout from "../components/Layout";
 import ToolCard from "../components/ToolCard";
 import TiltedCard from "../components/TiltedCard";
-import Background from "../components/Background";
 import "../styles/home.css";
 
 export default function Home({ user }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
 
   return (
-    <>
-      <Background>
-        <Header />
-        <div style={{ display: "flex" }}>
-          {/* Main Content */}
-          <div
-            style={{
-              flex: 1,
-              transition: "margin-left 0.3s ease",
-            }}
-          >
-            <div className="mindly-heading">
-              <span className="mindly">
-                <strong>Mindly</strong>
-              </span>
-              <span className="tools">
-                <strong>Tools</strong>
-              </span>
-            </div>
+    <Layout user={user}>
+      <div style={{ display: "flex" }}>
+        {/* Main Content */}
+        <div
+          style={{
+            flex: 1,
+            transition: "margin-left 0.3s ease",
+          }}
+        >
+          <div className="mindly-heading">
+            <span className="mindly">
+              <strong>Mindly</strong>
+            </span>
+            <span className="tools">
+              <strong>Tools</strong>
+            </span>
+          </div>
 
             <div className="tool-container">
               <TiltedCard
@@ -83,8 +76,7 @@ export default function Home({ user }) {
             setSidebarOpen={setSidebarOpen}
           />
         </div>
-        <Footer />
-      </Background>
-    </>
+      </div>
+    </Layout>
   );
 }
