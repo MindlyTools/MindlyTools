@@ -23,17 +23,16 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
   return (
     <>
       {/* Backdrop */}
-      <div 
+      <div
         className={`sidebar-backdrop ${sidebarOpen ? "active" : ""}`}
         onClick={closeSidebar}
       />
-      
+
       {/* Sidebar */}
       <div
         className={`sidebar ${sidebarOpen ? "open" : "collapsed"}`}
         style={{ paddingTop: "90px" }}
       >
-
         {/* Profile Picture */}
         <img
           src={
@@ -54,7 +53,9 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
         {sidebarOpen && <p className="sidebar-timezone">🕓 {timezone}</p>}
 
         {/* Main button */}
-        {sidebarOpen && <button className="sidebar-main-btn btn">Sidebar</button>}
+        {sidebarOpen && (
+          <button className="sidebar-main-btn btn">Sidebar</button>
+        )}
 
         <div className="sidebar-spacer"></div>
 
