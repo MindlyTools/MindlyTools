@@ -61,7 +61,7 @@ export default function Calculator() {
       <Header />
       <div className="calc-background">
         <div>
-          <button className="calc-back btn" onClick={() => navigate("/")}>
+          <button className="calc-back-btn" onClick={() => navigate("/")}>
             ↩ Main menu
           </button>
         </div>
