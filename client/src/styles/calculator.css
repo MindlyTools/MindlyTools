@@ -1,7 +1,10 @@
 .calc-background {
   background-color: #0a385c;
-  padding-top: 200px;
   height: 100vh;
+}
+
+.calc-bg {
+  padding-top: 15%;
 }
 
 .calc-container {
@@ -39,7 +42,7 @@
   gap: 12px;
 }
 
-button {
+.calc-btn {
   padding: 18px;
   border: none;
   border-radius: 14px;

@@ -7,6 +7,7 @@ import { auth } from "./firebase";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import Calculator from "./components/Calculator";
+import Calendar from "./components/Calendar";
 
 function App() {
   const [firebaseUser, setFirebaseUser] = useState(null);
@@ -51,6 +52,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home user={backendUser} />} />
         <Route path="/calculator" element={<Calculator />} />
+        <Route path="/calendar" element={<Calendar />} />
       </Routes>
     </BrowserRouter>
   );

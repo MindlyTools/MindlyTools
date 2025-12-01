@@ -15,7 +15,6 @@ export default function Home({ user }) {
       <Background>
         <Header />
         <div style={{ display: "flex" }}>
-          {/* Main Content */}
           <div
             style={{
               flex: 1,
@@ -54,7 +53,11 @@ export default function Home({ user }) {
               <TiltedCard
                 displayOverlayContent={true}
                 overlayContent={
-                  <ToolCard title="Tool 3" description="Description" />
+                  <ToolCard
+                    title="Calendar"
+                    description="A calendar for selecting and displaying dates"
+                    route="/calendar"
+                  />
                 }
               />
               <TiltedCard

@@ -58,61 +58,109 @@ export default function Calculator() {
 
   return (
     <>
-      <Header />
       <div className="calc-background">
-        <div>
-          <button className="calc-back btn" onClick={() => navigate("/")}>
-            ↩ Main menu
-          </button>
-        </div>
-        <div className="calc-container">
-          <div className="calc-display">{input || "0"}</div>
+        <Header />
+        <div className="calc-bg">
+          <div className="calc-container">
+            <div className="calc-display">{input || "0"}</div>
 
-          <div className="calc-buttons">
-            <button onClick={() => handleAdvanced("percent")}>%</button>
-            <button onClick={() => handleAdvanced("sqrt")}>√</button>
-            <button onClick={() => handleAdvanced("square")}>x²</button>
-            <button onClick={() => handleAdvanced("inverse")}>1/x</button>
-
-            <button onClick={clearInput} className="C-button">
-              C
-            </button>
-            <button onClick={deleteLast}>⌫</button>
-            <button onClick={() => handleAdvanced("negate")}>±</button>
-            <button onClick={() => handleClick("/")}>÷</button>
-
-            {[7, 8, 9].map((n) => (
-              <button key={n} onClick={() => handleClick(n)}>
-                {n}
+            <div className="calc-buttons">
+              <button
+                onClick={() => handleAdvanced("percent")}
+                className="calc-btn"
+              >
+                %
               </button>
-            ))}
-            <button onClick={() => handleClick("*")}>×</button>
-
-            {[4, 5, 6].map((n) => (
-              <button key={n} onClick={() => handleClick(n)}>
-                {n}
+              <button
+                onClick={() => handleAdvanced("sqrt")}
+                className="calc-btn"
+              >
+                √
               </button>
-            ))}
-            <button onClick={() => handleClick("-")}>−</button>
-
-            {[1, 2, 3].map((n) => (
-              <button key={n} onClick={() => handleClick(n)}>
-                {n}
+              <button
+                onClick={() => handleAdvanced("square")}
+                className="calc-btn"
+              >
+                x²
               </button>
-            ))}
-            <button onClick={() => handleClick("+")}>+</button>
+              <button
+                onClick={() => handleAdvanced("inverse")}
+                className="calc-btn"
+              >
+                1/x
+              </button>
 
-            <button onClick={() => handleClick("0")} className="zero">
-              0
-            </button>
-            <button onClick={() => handleClick(".")}>.</button>
-            <button onClick={calculate} className="equal">
-              =
-            </button>
+              <button onClick={clearInput} className="C-button calc-btn">
+                C
+              </button>
+              <button onClick={deleteLast} className="calc-btn">
+                ⌫
+              </button>
+              <button
+                onClick={() => handleAdvanced("negate")}
+                className="calc-btn"
+              >
+                ±
+              </button>
+              <button onClick={() => handleClick("/")} className="calc-btn">
+                ÷
+              </button>
+
+              {[7, 8, 9].map((n) => (
+                <button
+                  key={n}
+                  onClick={() => handleClick(n)}
+                  className="calc-btn"
+                >
+                  {n}
+                </button>
+              ))}
+              <button onClick={() => handleClick("*")} className="calc-btn">
+                ×
+              </button>
+
+              {[4, 5, 6].map((n) => (
+                <button
+                  key={n}
+                  onClick={() => handleClick(n)}
+                  className="calc-btn"
+                >
+                  {n}
+                </button>
+              ))}
+              <button onClick={() => handleClick("-")} className="calc-btn">
+                −
+              </button>
+
+              {[1, 2, 3].map((n) => (
+                <button
+                  key={n}
+                  onClick={() => handleClick(n)}
+                  className="calc-btn"
+                >
+                  {n}
+                </button>
+              ))}
+              <button onClick={() => handleClick("+")} className="calc-btn">
+                +
+              </button>
+
+              <button
+                onClick={() => handleClick("0")}
+                className="calc-btn zero"
+              >
+                0
+              </button>
+              <button onClick={() => handleClick(".")} className="calc-btn">
+                .
+              </button>
+              <button onClick={calculate} className="equal calc-btn">
+                =
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
