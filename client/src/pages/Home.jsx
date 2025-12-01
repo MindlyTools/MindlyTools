@@ -24,47 +24,57 @@ export default function Home({ user }) {
             </span>
           </div>
 
-          <div className="tool-container">
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard
-                  title="Todo List"
-                  description="Simple tool to manage tasks"
-                />
-              }
-            />
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard title="Tool 2" description="Description" />
-              }
-            />
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard title="Tool 3" description="Description" />
-              }
-            />
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard title="Tool 4" description="Description" />
-              }
-            />
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard title="Tool 5" description="Description" />
-              }
-            />
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard title="Tool 6" description="Description" />
-              }
-            />
+            <div className="tool-container">
+              <TiltedCard
+                displayOverlayContent={true}
+                overlayContent={
+                  <ToolCard
+                    title="Todo List"
+                    description="Simple tool to manage tasks"
+                  />
+                }
+              />
+              <TiltedCard
+                displayOverlayContent={true}
+                overlayContent={
+                  <ToolCard
+                    title="Calculator"
+                    description="Simple calculator for performing accurate operations"
+                    route="/calculator"
+                  />
+                }
+              />
+              <TiltedCard
+                displayOverlayContent={true}
+                overlayContent={
+                  <ToolCard title="Tool 3" description="Description" />
+                }
+              />
+              <TiltedCard
+                displayOverlayContent={true}
+                overlayContent={
+                  <ToolCard title="Tool 4" description="Description" />
+                }
+              />
+              <TiltedCard
+                displayOverlayContent={true}
+                overlayContent={
+                  <ToolCard title="Tool 5" description="Description" />
+                }
+              />
+              <TiltedCard
+                displayOverlayContent={true}
+                overlayContent={
+                  <ToolCard title="Tool 6" description="Description" />
+                }
+              />
+            </div>
           </div>
+          <Sidebar
+            user={user}
+            sidebarOpen={sidebarOpen}
+            setSidebarOpen={setSidebarOpen}
+          />
         </div>
       </div>
     </Layout>
