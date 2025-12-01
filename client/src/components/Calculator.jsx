@@ -7,7 +7,7 @@ import Footer from "./Footer";
 export default function Calculator() {
   const navigate = useNavigate();
   const [input, setInput] = useState("");
-  console.log(input);
+  // console.log(input);
 
   const handleClick = (value) => {
     setInput((prev) => prev + value);
