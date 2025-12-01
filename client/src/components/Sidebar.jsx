@@ -66,11 +66,11 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
         )}
 
         {sidebarOpen && (
-          <button className="sidebar-profile-btn" onClick={profile}>Profile</button>
+          <button className="sidebar-profile-btn btn" onClick={profile}>Profile</button>
         )}
 
         {sidebarOpen && (
-          <button className="sidebar-about-btn" onClick={about}>About</button>
+          <button className="sidebar-about-btn btn" onClick={about}>About</button>
         )}
 
         <div className="sidebar-spacer"></div>
