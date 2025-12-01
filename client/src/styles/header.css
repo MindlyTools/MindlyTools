@@ -13,6 +13,14 @@
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
+  gap: 50px;
+}
+
+.inner-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
 .logo {
@@ -38,14 +46,16 @@
 .contact-button {
   background: linear-gradient(135deg, #007bff, #0056b3);
   color: white;
-  padding: 0.75rem 1.5rem;
+  padding: 0.5rem 1.5rem;
   border-radius: 8px;
   text-decoration: none;
-  font-weight: 600;
+  font-weight: 400;
   transition: all 0.3s ease;
   border: none;
   cursor: pointer;
-  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+  display: inline-block;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px #007bff4d;
 }
 
 .contact-button:hover {
@@ -61,8 +71,14 @@
   }
 
   .header-container {
-    flex-direction: column;
+    flex-direction: row;
     gap: 1rem;
+  }
+
+  .inner-container {
+    width: auto;
+    flex: 1;
+    justify-content: space-between;
   }
 
   .main-nav {
