@@ -43,65 +43,21 @@ export default function ChooseUsername({ onComplete }) {
   };
 
   return (
-    <div
-      style={{
-        height: "100vh",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        background: "#0f0f0f",
-        color: "white",
-      }}
-    >
-      <div
-        style={{
-          background: "#1a1a1a",
-          padding: "40px",
-          borderRadius: "12px",
-          width: "400px",
-          textAlign: "center",
-          border: "1px solid #333",
-        }}
-      >
+    <div className="choose-username-container">
+      <div className="choose-username-box">
         <h2>Create a Username</h2>
-        <p style={{ marginBottom: "20px", color: "#aaa" }}>
-          Choose a unique username to complete your account
-        </p>
+        <p>Choose a unique username to complete your account</p>
 
         <input
           type="text"
           value={username}
           onChange={(e) => setUsername(e.target.value.trim())}
           placeholder="Enter username"
-          style={{
-            width: "100%",
-            padding: "12px",
-            fontSize: "16px",
-            borderRadius: "6px",
-            border: "1px solid #444",
-            marginBottom: "10px",
-            background: "#111",
-            color: "white",
-          }}
         />
 
-        {error && (
-          <div style={{ color: "red", marginBottom: "10px" }}>{error}</div>
-        )}
+        {error && <div className="error">{error}</div>}
 
-        <button
-          onClick={saveUsername}
-          disabled={loading}
-          style={{
-            width: "100%",
-            padding: "12px",
-            backgroundColor: loading ? "#555" : "#333",
-            borderRadius: "6px",
-            border: "1px solid #555",
-            color: "white",
-            cursor: loading ? "not-allowed" : "pointer",
-          }}
-        >
+        <button onClick={saveUsername} disabled={loading}>
           {loading ? "Saving..." : "Save Username"}
         </button>
       </div>

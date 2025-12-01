@@ -30,6 +30,7 @@ export default function Home({ user }) {
                 <ToolCard
                   title="Todo List"
                   description="Simple tool to manage tasks"
+                  route="/todolist"
                 />
               }
             />
@@ -48,7 +49,11 @@ export default function Home({ user }) {
             <TiltedCard
               displayOverlayContent={true}
               overlayContent={
-                <ToolCard title="Tool 3" description="Description" />
+                <ToolCard
+                  title="Habit Tracker"
+                  description="Track your daily habits"
+                  route="/habits"
+                />
               }
             />
 

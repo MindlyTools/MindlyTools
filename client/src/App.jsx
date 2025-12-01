@@ -1,11 +1,15 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import { auth } from "./firebase";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import ChooseUsername from "./pages/ChooseUsername";
+import TodoList from "./pages/ToDoList";
+import UserProfile from "./pages/UserProfile";
+import HabitTracker from "./pages/HabitTracker";
+import HabitStats from "./pages/HabitStats";
 import Calculator from "./components/Calculator";
 
 function App() {
@@ -20,6 +24,7 @@ function App() {
 
       if (!user) {
         setBackendUser(null);
+        setNeedsUsername(false);
         setLoading(false);
         return;
       }
@@ -36,6 +41,13 @@ function App() {
 
       const data = await res.json();
 
+      if (data.needsUsername) {
+        setNeedsUsername(true);
+      } else {
+        setBackendUser(data.user);
+        setNeedsUsername(false);
+      }
+
       setLoading(false);
     });
 
@@ -45,12 +57,22 @@ function App() {
   if (loading) return <div style={{ color: "white" }}>Loading...</div>;
   if (!firebaseUser) return <Login />;
 
-  // return <Home user={backendUser} />;
+  if (needsUsername) {
+    return <ChooseUsername onComplete={() => window.location.reload()} />;
+  }
+
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home user={backendUser} />} />
+        <Route path="/todolist" element={<TodoList user={backendUser} />} />
+        <Route path="/profile" element={<UserProfile user={backendUser} />} />
         <Route path="/calculator" element={<Calculator />} />
+        <Route path="/habits" element={<HabitTracker user={backendUser} />} />
+        <Route
+          path="/habits/:id/:range"
+          element={<HabitStats user={backendUser} />}
+        />
       </Routes>
     </BrowserRouter>
   );

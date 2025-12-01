@@ -1,5 +1,6 @@
 import express from "express";
 import admin from "../config/firebase.js";
+import { verifyToken } from "../middleware/auth.js";
 
 const router = express.Router();
 const db = admin.database();
@@ -34,12 +35,12 @@ router.post("/google", async (req, res) => {
       return res.json({ needsUsername: true });
     }
 
-    // USER EXISTS BUT NO USERNAME
+    // USER EXISTS BUT NEEDS USERNAME
     if (!user.username) {
       return res.json({ needsUsername: true });
     }
 
-    // USER EXISTS + COMPLETE PROFILE
+    // USER EXISTS + PROFILE COMPLETE
     return res.json({
       success: true,
       user: { uid, ...user }
