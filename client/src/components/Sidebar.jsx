@@ -16,47 +16,60 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
     window.location.href = "/";
   };
 
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
+
   return (
-    <div
-      className={`sidebar ${sidebarOpen ? "open" : "collapsed"}`}
-      style={{ paddingTop: "90px" }}
-    >
-      {/* Hamburger Toggle */}
-      <button
-        className="sidebar-toggle btn"
-        onClick={() => setSidebarOpen(!sidebarOpen)}
-      >
-        ☰
-      </button>
-
-      {/* Profile Picture */}
-      <img
-        src={
-          user?.picture
-            ? user.picture
-            : "https://ui-avatars.com/api/?name=User&background=444&color=fff&rounded=true&size=128"
-        }
-        alt="Profile"
-        className="sidebar-profile"
+    <>
+      {/* Backdrop */}
+      <div 
+        className={`sidebar-backdrop ${sidebarOpen ? "active" : ""}`}
+        onClick={closeSidebar}
       />
+      
+      {/* Sidebar */}
+      <div
+        className={`sidebar ${sidebarOpen ? "open" : "collapsed"}`}
+        style={{ paddingTop: "90px" }}
+      >
 
-      {/* Username */}
-      {sidebarOpen && (
-        <h3 className="sidebar-username">{user?.username || user?.name}</h3>
-      )}
+        {/* Profile Picture */}
+        <img
+          src={
+            user?.picture
+              ? user.picture
+              : "https://ui-avatars.com/api/?name=User&background=444&color=fff&rounded=true&size=128"
+          }
+          alt="Profile"
+          className="sidebar-profile"
+        />
 
-      {/* Timezone */}
-      {sidebarOpen && <p className="sidebar-timezone">🕓 {timezone}</p>}
+        {/* Username */}
+        {sidebarOpen && (
+          <h3 className="sidebar-username">{user?.username || user?.name}</h3>
+        )}
 
-      {/* Main button */}
-      {sidebarOpen && <button className="sidebar-main-btn btn">Sidebar</button>}
+        {/* Timezone */}
+        {sidebarOpen && <p className="sidebar-timezone">🕓 {timezone}</p>}
 
-      <div className="sidebar-spacer"></div>
+        {/* Main button */}
+        {sidebarOpen && <button className="sidebar-main-btn btn">Sidebar</button>}
 
-      {/* Logout Button */}
-      <button className="sidebar-logout-btn" onClick={handleLogout}>
-        {sidebarOpen ? "Logout" : "⏻"}
-      </button>
-    </div>
+        <div className="sidebar-spacer"></div>
+
+        {/* Logout Button */}
+        <button className="sidebar-logout-btn" onClick={handleLogout}>
+          {sidebarOpen ? (
+            <>
+              <span>⏻</span>
+              Logout
+            </>
+          ) : (
+            "⏻"
+          )}
+        </button>
+      </div>
+    </>
   );
 }
