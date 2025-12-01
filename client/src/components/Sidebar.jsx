@@ -16,6 +16,14 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
     window.location.href = "/";
   };
 
+  const profile = async () => {
+    window.location.href = "/profile";
+  };
+
+  const about = async () => {
+    window.location.href = "/about";
+  };
+
   const closeSidebar = () => {
     setSidebarOpen(false);
   };
@@ -55,6 +63,14 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
         {/* Main button */}
         {sidebarOpen && (
           <button className="sidebar-main-btn btn">Sidebar</button>
+        )}
+
+        {sidebarOpen && (
+          <button className="sidebar-profile-btn" onClick={profile}>Profile</button>
+        )}
+
+        {sidebarOpen && (
+          <button className="sidebar-about-btn" onClick={about}>About</button>
         )}
 
         <div className="sidebar-spacer"></div>
