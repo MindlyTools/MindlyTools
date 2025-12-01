@@ -27,7 +27,7 @@ export default function UserProfile({ user }) {
 
     const data = await res.json();
     if (data.success) {
-      alert("Username updated!");
+      // alert("Username updated!");
       window.location.reload();
     } else {
       alert(data.error || "Failed to update username.");
@@ -55,7 +55,7 @@ export default function UserProfile({ user }) {
 
     const data = await res.json();
     if (data.success) {
-      alert("Profile picture updated!");
+      // alert("Profile picture updated!");
       window.location.reload();
     } else {
       alert(data.error || "Failed to update picture.");

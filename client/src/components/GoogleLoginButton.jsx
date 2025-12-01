@@ -11,10 +11,10 @@ export default function GoogleLoginButton() {
       // console.log("Google User:", result.user);
       // console.log("Firebase Token:", token);
 
-      alert("Login successful!");
+      // alert("Login successful!");
     } catch (error) {
       console.error(error);
-      alert("Google login failed");
+      // alert("Google login failed");
     }
   };
 
