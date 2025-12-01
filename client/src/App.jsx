@@ -1,9 +1,12 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import { useEffect, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 
 import { auth } from "./firebase";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
+import Calculator from "./components/Calculator";
 
 function App() {
   const [firebaseUser, setFirebaseUser] = useState(null);
@@ -42,7 +45,15 @@ function App() {
   if (loading) return <div style={{ color: "white" }}>Loading...</div>;
   if (!firebaseUser) return <Login />;
 
-  return <Home user={backendUser} />;
+  // return <Home user={backendUser} />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home user={backendUser} />} />
+        <Route path="/calculator" element={<Calculator />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
