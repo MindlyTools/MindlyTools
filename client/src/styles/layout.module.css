@@ -5,6 +5,4 @@
 
 .mainContent {
   flex: 1;
-  transition: margin-left 0.3s ease;
-  padding: 20px;
 }
