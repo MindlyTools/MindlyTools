@@ -6,11 +6,6 @@ import { auth } from "./firebase";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import ChooseUsername from "./pages/ChooseUsername";
-import TodoList from "./pages/ToDoList";
-import UserProfile from "./pages/UserProfile";
-import HabitTracker from "./pages/HabitTracker";
-import HabitStats from "./pages/HabitStats";
-import Calculator from "./components/Calculator";
 
 function App() {
   const [firebaseUser, setFirebaseUser] = useState(null);
@@ -65,14 +60,6 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home user={backendUser} />} />
-        <Route path="/todolist" element={<TodoList user={backendUser} />} />
-        <Route path="/profile" element={<UserProfile user={backendUser} />} />
-        <Route path="/calculator" element={<Calculator />} />
-        <Route path="/habits" element={<HabitTracker user={backendUser} />} />
-        <Route
-          path="/habits/:id/:range"
-          element={<HabitStats user={backendUser} />}
-        />
       </Routes>
     </BrowserRouter>
   );
