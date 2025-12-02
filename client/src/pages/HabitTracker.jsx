@@ -11,7 +11,7 @@ export default function HabitTracker({ user }) {
 
   const loadHabits = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch("http://localhost:5000/api/habits", {
+    const res = await fetch("/api/habits", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -21,7 +21,7 @@ export default function HabitTracker({ user }) {
 
   const loadLogs = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch("http://localhost:5000/api/habits/logs", {
+    const res = await fetch("/api/habits/logs", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -33,7 +33,7 @@ export default function HabitTracker({ user }) {
     if (!text.trim()) return;
 
     const token = await auth.currentUser.getIdToken();
-    await fetch("http://localhost:5000/api/habits", {
+    await fetch("/api/habits", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -50,7 +50,7 @@ export default function HabitTracker({ user }) {
     const date = new Date().toISOString().split("T")[0];
 
     const token = await auth.currentUser.getIdToken();
-    await fetch(`http://localhost:5000/api/habits/${id}/toggle`, {
+    await fetch(`/api/habits/${id}/toggle`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

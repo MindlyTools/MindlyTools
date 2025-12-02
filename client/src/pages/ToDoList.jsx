@@ -12,7 +12,7 @@ export default function ToDoList({ user }) {
   const loadItems = async () => {
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("http://localhost:5000/api/todo", {
+    const res = await fetch("/api/todo", {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -25,7 +25,7 @@ export default function ToDoList({ user }) {
     if (!text.trim()) return;
     const token = await auth.currentUser.getIdToken();
 
-    await fetch("http://localhost:5000/api/todo", {
+    await fetch("/api/todo", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +42,7 @@ export default function ToDoList({ user }) {
   const deleteItem = async (id) => {
     const token = await auth.currentUser.getIdToken();
 
-    await fetch(`http://localhost:5000/api/todo/${id}`, {
+    await fetch(`/api/todo/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

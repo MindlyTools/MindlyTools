@@ -10,10 +10,9 @@ export default function HabitStats({ user }) {
 
   const loadStats = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch(
-      `http://localhost:5000/api/habits/stats/${id}/${range}`,
-      { headers: { Authorization: `Bearer ${token}` } }
-    );
+    const res = await fetch(`/api/habits/stats/${id}/${range}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
     setStats(await res.json());
   };
 

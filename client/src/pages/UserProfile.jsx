@@ -16,7 +16,7 @@ export default function UserProfile({ user }) {
   const handleUsernameUpdate = async () => {
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("http://localhost:5000/api/user/update-username", {
+    const res = await fetch("/api/user/update-username", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -45,7 +45,7 @@ export default function UserProfile({ user }) {
 
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("http://localhost:5000/api/user/update-picture", {
+    const res = await fetch("/api/user/update-picture", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -99,7 +99,10 @@ export default function UserProfile({ user }) {
           />
         </div>
 
-        <button className={styles.userprofileSaveBtn} onClick={handleUsernameUpdate}>
+        <button
+          className={styles.userprofileSaveBtn}
+          onClick={handleUsernameUpdate}
+        >
           Save Changes
         </button>
       </div>

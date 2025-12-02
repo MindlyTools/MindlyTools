@@ -19,7 +19,7 @@ export default function ChooseUsername({ onComplete }) {
     try {
       const token = await auth.currentUser.getIdToken();
 
-      const res = await fetch("http://localhost:5000/api/auth/set-username", {
+      const res = await fetch("/api/auth/set-username", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
