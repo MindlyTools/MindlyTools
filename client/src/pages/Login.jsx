@@ -1,27 +1,27 @@
 import GoogleLoginButton from "../components/GoogleLoginButton";
 import Logo from "../components/Logo"
-import "../styles/login.css";
+import styles from "../styles/login.module.css";
 
 export default function Login() {
   return (
-    <div className="page-container">
-      <div className="background-layer">
-        <div className="grid-overlay"></div>
+    <div className={styles.pageContainer}>
+      <div className={styles.backgroundLayer}>
+        <div className={styles.gridOverlay}></div>
       </div>
 
-      <div className="login-card">
-        <header className="card-header">
+      <div className={styles.loginCard}>
+        <header className={styles.cardHeader}>
           <Logo />
         </header>
 
-        <section className="card-body">
-          <p className="subtitle">Elevate Your Productivity</p>
-          <p className="subtitle">Sign in to continue your journey</p>
-          <div className="divider"></div>
+        <section className={styles.cardBody}>
+          <p className={styles.cardBodyText}>Elevate Your Productivity</p>
+          <p className={styles.cardBodyText}>Sign in to continue your journey</p>
+          <div className={styles.divider}></div>
           <GoogleLoginButton />
         </section>
 
-        <footer className="card-footer">
+        <footer className={styles.cardFooter}>
           Secure login · Your data is protected
         </footer>
       </div>
