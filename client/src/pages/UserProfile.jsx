@@ -3,6 +3,8 @@ import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
 import styles from "../styles/userprofile.module.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function UserProfile({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [username, setUsername] = useState(user?.username || "");
@@ -16,7 +18,7 @@ export default function UserProfile({ user }) {
   const handleUsernameUpdate = async () => {
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("http://localhost:5000/api/user/update-username", {
+    const res = await fetch(`${API_URL}/api/user/update-username`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -27,7 +29,6 @@ export default function UserProfile({ user }) {
 
     const data = await res.json();
     if (data.success) {
-      // alert("Username updated!");
       window.location.reload();
     } else {
       alert(data.error || "Failed to update username.");
@@ -45,7 +46,7 @@ export default function UserProfile({ user }) {
 
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("http://localhost:5000/api/user/update-picture", {
+    const res = await fetch(`${API_URL}/api/user/update-picture`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -55,7 +56,6 @@ export default function UserProfile({ user }) {
 
     const data = await res.json();
     if (data.success) {
-      // alert("Profile picture updated!");
       window.location.reload();
     } else {
       alert(data.error || "Failed to update picture.");
@@ -99,7 +99,10 @@ export default function UserProfile({ user }) {
           />
         </div>
 
-        <button className={styles.userprofileSaveBtn} onClick={handleUsernameUpdate}>
+        <button
+          className={styles.userprofileSaveBtn}
+          onClick={handleUsernameUpdate}
+        >
           Save Changes
         </button>
       </div>

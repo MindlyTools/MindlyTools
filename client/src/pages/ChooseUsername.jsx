@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { auth } from "../firebase";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function ChooseUsername({ onComplete }) {
   const [username, setUsername] = useState("");
   const [error, setError] = useState("");
@@ -19,7 +21,7 @@ export default function ChooseUsername({ onComplete }) {
     try {
       const token = await auth.currentUser.getIdToken();
 
-      const res = await fetch("http://localhost:5000/api/auth/set-username", {
+      const res = await fetch(`${API_URL}/api/auth/set-username`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

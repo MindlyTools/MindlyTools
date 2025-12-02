@@ -3,6 +3,8 @@ import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
 import "../styles/habits.css";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 export default function HabitTracker({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
   const [habits, setHabits] = useState({});
@@ -11,7 +13,7 @@ export default function HabitTracker({ user }) {
 
   const loadHabits = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch("http://localhost:5000/api/habits", {
+    const res = await fetch(`${API_URL}/api/habits`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -21,7 +23,7 @@ export default function HabitTracker({ user }) {
 
   const loadLogs = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch("http://localhost:5000/api/habits/logs", {
+    const res = await fetch(`${API_URL}/api/habits/logs`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -33,7 +35,7 @@ export default function HabitTracker({ user }) {
     if (!text.trim()) return;
 
     const token = await auth.currentUser.getIdToken();
-    await fetch("http://localhost:5000/api/habits", {
+    await fetch(`${API_URL}/api/habits`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -50,7 +52,7 @@ export default function HabitTracker({ user }) {
     const date = new Date().toISOString().split("T")[0];
 
     const token = await auth.currentUser.getIdToken();
-    await fetch(`http://localhost:5000/api/habits/${id}/toggle`, {
+    await fetch(`${API_URL}/api/habits/${id}/toggle`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
