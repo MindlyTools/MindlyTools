@@ -1,14 +1,14 @@
 .toolCard {
   background: white;
   border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px #0000001a;
   padding: 24px;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 .toolCard:hover {
   transform: translateY(-4px);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  box-shadow: 0 4px 16px #00000026;
 }
 
 .toolCardContent {
@@ -53,4 +53,3 @@
 .toolButton:hover {
   opacity: 0.9;
 }
-
