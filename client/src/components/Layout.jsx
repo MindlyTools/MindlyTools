@@ -3,7 +3,7 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 import Footer from "./Footer";
 import Background from "./Background";
-import "../styles/layout.css";
+import styles from "../styles/layout.module.css";
 
 export default function Layout({ user, children }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -26,13 +26,13 @@ export default function Layout({ user, children }) {
   return (
     <Background>
       <Header sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-      <div className="layout-container">
+      <div className={styles.layoutContainer}>
         <Sidebar
           user={user}
           sidebarOpen={sidebarOpen}
           setSidebarOpen={setSidebarOpen}
         />
-        <main className={`main-content ${sidebarOpen ? "sidebar-open" : ""}`}>
+        <main className={`${styles.mainContent} ${sidebarOpen ? styles.sidebarOpen : ""}`}>
           {children}
         </main>
       </div>

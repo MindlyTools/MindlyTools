@@ -1,13 +1,13 @@
 import Logo from "../components/Logo";
 import HamburgerButton from "../components/HamburgerButton";
-import "../styles/header.css";
+import styles from "../styles/header.module.css";
 
 export default function Header({ sidebarOpen, setSidebarOpen }) {
   return (
-    <header className="site-header">
-      <div className="header-container">
-        <div className="inner-container">
-          <a href="/" className="logo">
+    <header className={styles.siteHeader}>
+      <div className={styles.headerContainer}>
+        <div className={styles.innerContainer}>
+          <a href="/" className={styles.logo}>
             <Logo />
           </a>
 
@@ -17,10 +17,10 @@ export default function Header({ sidebarOpen, setSidebarOpen }) {
           className=""
           />
         </div>
-        <nav className="main-nav">
-          <ul className="nav-list">
+        <nav className={styles.mainNav}>
+          <ul className={styles.navList}>
             <li>
-              <a href="#contact" className="contact-button">Contact Us</a>
+              <a href="#contact" className={styles.contactButton}>Contact Us</a>
             </li>
           </ul>
         </nav>

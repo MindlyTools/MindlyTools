@@ -1,5 +1,5 @@
 /* Page Container */
-.page-container {
+.pageContainer {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -10,7 +10,7 @@
 }
 
 /* Background Layer */
-.background-layer {
+.backgroundLayer {
   position: absolute;
   top: 0;
   left: 0;
@@ -19,7 +19,7 @@
   z-index: 0;
 }
 
-.grid-overlay {
+.gridOverlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -32,7 +32,7 @@
 }
 
 /* Login Card */
-.login-card {
+.loginCard {
   position: relative;
   z-index: 10;
   background: #f4f4f4;
@@ -61,16 +61,16 @@
 }
 
 /* Card Header */
-.card-header {
+.cardHeader {
   background: transparent;
 }
 
 /* Card Body */
-.card-body {
+.cardBody {
   color: #1a3d64;
 }
 
-.card-body .subtitle {
+.cardBodyText {
   font-size: 0.95rem;
   margin: 0 0 1.5rem 0;
   opacity: 0.7;
@@ -92,16 +92,17 @@
 }
 
 /* Card Footer */
-.card-footer {
+.cardFooter {
   font-size: 0.8rem;
   color: #1a3d64;
   opacity: 0.6;
   background: transparent;
+  margin-top: 30px;
 }
 
 /* Responsive */
 @media (max-width: 480px) {
-  .login-card {
+  .loginCard {
     padding: 2rem 1.5rem;
     margin: 1rem;
   }

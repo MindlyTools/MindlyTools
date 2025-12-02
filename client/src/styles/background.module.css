@@ -1,4 +1,4 @@
-.page-container {
+.pageContainer {
   min-height: 100vh;
   display: flex;
   justify-content: center;
@@ -8,7 +8,7 @@
   background: radial-gradient(circle, #1d546c 0%, #1a3d64 50%, #0c2b4e 100%);
 }
 
-.background-layer {
+.backgroundLayer {
   position: absolute;
   top: 0;
   left: 0;
@@ -17,7 +17,7 @@
   z-index: 0;
 }
 
-.grid-overlay {
+.gridOverlay {
   position: absolute;
   top: 0;
   left: 0;

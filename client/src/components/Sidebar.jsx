@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
-import "../styles/sidebar.css";
+import styles from "../styles/sidebar.module.css";
 
 export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
   const [timezone, setTimezone] = useState("");
@@ -32,13 +32,13 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
     <>
       {/* Backdrop */}
       <div
-        className={`sidebar-backdrop ${sidebarOpen ? "active" : ""}`}
+        className={`${styles.sidebarBackdrop} ${sidebarOpen ? styles.active : ""}`}
         onClick={closeSidebar}
       />
 
       {/* Sidebar */}
       <div
-        className={`sidebar ${sidebarOpen ? "open" : "collapsed"}`}
+        className={`${styles.sidebar} ${sidebarOpen ? styles.open : styles.collapsed}`}
         style={{ paddingTop: "90px" }}
       >
         {/* Profile Picture */}
@@ -49,34 +49,34 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
               : "https://ui-avatars.com/api/?name=User&background=444&color=fff&rounded=true&size=128"
           }
           alt="Profile"
-          className="sidebar-profile"
+          className={styles.sidebarProfile}
         />
 
         {/* Username */}
         {sidebarOpen && (
-          <h3 className="sidebar-username">{user?.username || user?.name}</h3>
+          <h3 className={styles.sidebarUsername}>{user?.username || user?.name}</h3>
         )}
 
         {/* Timezone */}
-        {sidebarOpen && <p className="sidebar-timezone">🕓 {timezone}</p>}
+        {sidebarOpen && <p className={styles.sidebarTimezone}>🕓 {timezone}</p>}
 
-        {/* Main button */}
+        {/* Main Buttons */}
         {sidebarOpen && (
-          <button className="sidebar-main-btn btn">Sidebar</button>
+          <button className={styles.sidebarBtn} onClick={profile}>
+            Profile
+          </button>
         )}
 
         {sidebarOpen && (
-          <button className="sidebar-profile-btn btn" onClick={profile}>Profile</button>
+          <button className={styles.sidebarBtn} onClick={about}>
+            About
+          </button>
         )}
 
-        {sidebarOpen && (
-          <button className="sidebar-about-btn btn" onClick={about}>About</button>
-        )}
-
-        <div className="sidebar-spacer"></div>
+        <div className={styles.sidebarSpacer}></div>
 
         {/* Logout Button */}
-        <button className="sidebar-logout-btn" onClick={handleLogout}>
+        <button className={styles.sidebarLogoutBtn} onClick={handleLogout}>
           {sidebarOpen ? (
             <>
               <span>⏻</span>

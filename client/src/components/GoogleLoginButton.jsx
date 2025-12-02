@@ -1,6 +1,6 @@
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../firebase";
-import "../styles/googlelogin.css";
+import styles from "../styles/googleloginbutton.module.css";
 
 export default function GoogleLoginButton() {
   const handleGoogleLogin = async () => {
@@ -19,10 +19,10 @@ export default function GoogleLoginButton() {
   };
 
   return (
-    <div className="google-button-container">
-      <button className="google-button" onClick={handleGoogleLogin}>
+    <div className={styles.googleButtonContainer}>
+      <button className={styles.googleButton} onClick={handleGoogleLogin}>
         <svg
-          className="google-icon"
+          className={styles.googleIcon}
           xmlns="http://www.w3.org/2000/svg"
           viewBox="-0.5 0 48 48"
           aria-hidden="true"

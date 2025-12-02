@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
-import "../styles/UserProfile.css";
+import styles from "../styles/userprofile.module.css";
 
 export default function UserProfile({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -63,43 +63,43 @@ export default function UserProfile({ user }) {
   };
 
   return (
-    <div className="userprofile-container">
+    <div className={styles.userprofileContainer}>
       <Sidebar
         user={user}
         sidebarOpen={sidebarOpen}
         setSidebarOpen={setSidebarOpen}
       />
 
-      <div className="userprofile-content">
+      <div className={styles.userprofileContent}>
         <h1>User Profile</h1>
 
         {/* Profile Picture */}
-        <div className="userprofile-picture-section">
+        <div className={styles.userprofilePictureSection}>
           <img
             src={preview}
             alt="Profile Preview"
-            className="userprofile-picture"
+            className={styles.userprofilePicture}
           />
           <input
             type="file"
             accept="image/*"
             onChange={handleImageUpload}
-            className="userprofile-file-input"
+            className={styles.userprofileFileInput}
           />
         </div>
 
         {/* Username */}
-        <div className="userprofile-field">
+        <div className={styles.userprofileField}>
           <label>Username</label>
           <input
             type="text"
             value={username}
-            className="userprofile-input"
+            className={styles.userprofileInput}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
 
-        <button className="userprofile-save-btn" onClick={handleUsernameUpdate}>
+        <button className={styles.userprofileSaveBtn} onClick={handleUsernameUpdate}>
           Save Changes
         </button>
       </div>
