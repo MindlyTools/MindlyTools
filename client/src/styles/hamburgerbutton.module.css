@@ -1,4 +1,4 @@
-.hamburger-btn {
+.hamburgerBtn {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -39,14 +39,14 @@
   top: 12px;
 }
 
-.hamburger-btn.open .line {
+.hamburgerBtn.open .line {
   background: transparent;
 }
 
-.hamburger-btn.open .line::before {
+.hamburgerBtn.open .line::before {
   transform: translateY(12px) rotate(45deg);
 }
 
-.hamburger-btn.open .line::after {
+.hamburgerBtn.open .line::after {
   transform: translateY(-12px) rotate(-45deg);
 }

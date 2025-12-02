@@ -1,12 +1,12 @@
-import "../styles/background.css";
+import styles from "../styles/background.module.css";
 
 export default function Background({ children }) {
   return (
-    <div className="page-container">
-      <div className="background-layer">
-        <div className="grid-overlay"></div>
+    <div className={styles.pageContainer}>
+      <div className={styles.backgroundLayer}>
+        <div className={styles.gridOverlay}></div>
       </div>
-      <div className="content">{children}</div>
+      <div className={styles.content}>{children}</div>
     </div>
   );
 }
