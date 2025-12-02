@@ -1,85 +1,83 @@
 import Layout from "../components/Layout";
 import ToolCard from "../components/ToolCard";
-import TiltedCard from "../components/TiltedCard";
-import "../styles/home.css";
+import styles from "../styles/home.module.css";
 
 export default function Home({ user }) {
   return (
     <Layout user={user}>
-      <div style={{ display: "flex" }}>
-        {/* Main Content */}
-        <div
-          style={{
-            flex: 1,
-            transition: "margin-left 0.3s ease",
-          }}
-        >
-          <div className="mindly-heading">
-            <span className="mindly">
-              <strong>Mindly</strong>
-            </span>
-            <span className="tools">
-              <strong>Tools</strong>
-            </span>
-          </div>
-
-          <div className="tool-container">
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard
-                  title="Todo List"
-                  description="Simple tool to manage tasks"
-                  route="/todolist"
-                />
-              }
-            />
-
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard
-                  title="Calculator"
-                  description="Simple calculator for performing accurate operations"
-                  route="/calculator"
-                />
-              }
-            />
-
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard
-                  title="Habit Tracker"
-                  description="Track your daily habits"
-                  route="/habits"
-                />
-              }
-            />
-
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard title="Tool 4" description="Description" />
-              }
-            />
-
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard title="Tool 5" description="Description" />
-              }
-            />
-
-            <TiltedCard
-              displayOverlayContent={true}
-              overlayContent={
-                <ToolCard title="Tool 6" description="Description" />
-              }
-            />
+        {/* Hero Section */}
+        <div className={styles.heroSection}>
+          <div className={styles.titleHeader}>
+            <h1 className={styles.mainTitle}>
+              Simple tools for a more <span className={styles.highlight}>productive</span> day
+            </h1>
+            <p className={styles.subtitle}>Elevate your daily productivity with our curated toolkit</p>
+            <p className={styles.description}>
+              Streamline your workflow, track your progress, and achieve more with our intuitive productivity tools.
+            </p>
           </div>
         </div>
-      </div>
+
+        {/* Tools Grid Section */}
+        <div className={styles.toolsSection}>
+          <div className={styles.sectionHeader}>
+            <h2 className={styles.sectionTitle}>Featured Tools</h2>
+            <p className={styles.sectionSubtitle}>Tools designed to boost your efficiency</p>
+          </div>
+
+          <div className={styles.mainContent}>
+            <ToolCard
+              title="Todo List"
+              description="Manage daily tasks, set priorities, and track progress"
+              route="/todolist"
+              icon="📝"
+            />
+
+            <ToolCard
+              title="Calculator"
+              description="Perform accurate calculations with an intuitive interface"
+              route="/calculator"
+              icon="🧮"
+            />
+
+            <ToolCard
+              title="Habit Tracker"
+              description="Build consistency and monitor your daily habits easily"
+              route="/habits"
+              icon="📈"
+            />
+
+            <ToolCard
+              title="Notes"
+              description="Capture and organize your ideas and thoughts instantly"
+              route="/notes"
+              icon="📒"
+            />
+
+            <ToolCard
+              title="Pomodoro Timer"
+              description="Focus with structured timed work and break sessions"
+              route="/pomodoro"
+              icon="⏱️"
+            />
+
+            <ToolCard
+              title="Budget Planner"
+              description="Track expenses and manage your personal finances wisely"
+              route="/budget"
+              icon="💰"
+            />
+          </div>
+
+          {/* CTA Section */}
+          <div className={styles.ctaSection}>
+            <h3 className={styles.ctaTitle}>🛠️ More tools coming soon!</h3>
+            <p className={styles.ctaText}>
+              We're constantly expanding our toolkit. Have a suggestion?
+              <a href="/" className={styles.ctaLink}> Let us know</a>
+            </p>
+          </div>
+        </div>  
     </Layout>
   );
 }
