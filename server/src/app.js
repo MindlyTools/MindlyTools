@@ -9,11 +9,6 @@ const app = express();
 
 app.use(
   cors({
-    origin: [
-      "https://mindlytools.onrender.com",     // backend
-      "https://mindlytools1.onrender.com", //  frontend 
-      "http://localhost:5173",                // Vite local dev
-    ],
     methods: ["GET", "POST", "DELETE", "PUT"],
     allowedHeaders: ["Content-Type", "Authorization"],
     credentials: true,
