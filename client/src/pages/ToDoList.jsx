@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
 import "../styles/todolist.css";
+import { API_URL } from "../api";
 
 export default function ToDoList({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -12,7 +13,7 @@ export default function ToDoList({ user }) {
   const loadItems = async () => {
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("/api/todo", {
+    const res = await fetch(`${API_URL}/api/todo`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -25,7 +26,7 @@ export default function ToDoList({ user }) {
     if (!text.trim()) return;
     const token = await auth.currentUser.getIdToken();
 
-    await fetch("/api/todo", {
+    await fetch(`${API_URL}/api/todo`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -42,7 +43,7 @@ export default function ToDoList({ user }) {
   const deleteItem = async (id) => {
     const token = await auth.currentUser.getIdToken();
 
-    await fetch(`/api/todo/${id}`, {
+    await fetch(`${API_URL}/api/todo/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });

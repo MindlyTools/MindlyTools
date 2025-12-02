@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
 import styles from "../styles/userprofile.module.css";
+import { API_URL } from "../api";
 
 export default function UserProfile({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -16,7 +17,7 @@ export default function UserProfile({ user }) {
   const handleUsernameUpdate = async () => {
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("/api/user/update-username", {
+    const res = await fetch(`${API_URL}/api/user/update-username`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -45,11 +46,9 @@ export default function UserProfile({ user }) {
 
     const token = await auth.currentUser.getIdToken();
 
-    const res = await fetch("/api/user/update-picture", {
+    const res = await fetch(`${API_URL}/api/user/update-picture`, {
       method: "POST",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
       body: formData,
     });
 

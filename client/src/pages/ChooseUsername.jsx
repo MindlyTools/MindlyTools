@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { auth } from "../firebase";
+import { API_URL } from "../api";
 
 export default function ChooseUsername({ onComplete }) {
   const [username, setUsername] = useState("");
@@ -19,7 +20,7 @@ export default function ChooseUsername({ onComplete }) {
     try {
       const token = await auth.currentUser.getIdToken();
 
-      const res = await fetch("/api/auth/set-username", {
+      const res = await fetch(`${API_URL}/api/auth/set-username`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

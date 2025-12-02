@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
 import "../styles/habits.css";
+import { API_URL } from "../api";
 
 export default function HabitTracker({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -11,7 +12,7 @@ export default function HabitTracker({ user }) {
 
   const loadHabits = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch("/api/habits", {
+    const res = await fetch(`${API_URL}/api/habits`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -21,7 +22,7 @@ export default function HabitTracker({ user }) {
 
   const loadLogs = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch("/api/habits/logs", {
+    const res = await fetch(`${API_URL}/api/habits/logs`, {
       headers: { Authorization: `Bearer ${token}` },
     });
 
@@ -33,7 +34,7 @@ export default function HabitTracker({ user }) {
     if (!text.trim()) return;
 
     const token = await auth.currentUser.getIdToken();
-    await fetch("/api/habits", {
+    await fetch(`${API_URL}/api/habits`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -50,7 +51,7 @@ export default function HabitTracker({ user }) {
     const date = new Date().toISOString().split("T")[0];
 
     const token = await auth.currentUser.getIdToken();
-    await fetch(`/api/habits/${id}/toggle`, {
+    await fetch(`${API_URL}/api/habits/${id}/toggle`, {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`,

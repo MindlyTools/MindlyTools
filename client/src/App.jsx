@@ -31,7 +31,7 @@ function App() {
 
       const token = await user.getIdToken();
 
-      const res = await fetch("/api/auth/google", {
+      const res = await fetch(`${API_URL}/api/auth/google`, {
         method: "POST",
         headers: {
           Authorization: `Bearer ${token}`,

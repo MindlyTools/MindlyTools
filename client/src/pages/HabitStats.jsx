@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
 import { useParams } from "react-router-dom";
+import { API_URL } from "../api";
 
 export default function HabitStats({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -10,9 +11,11 @@ export default function HabitStats({ user }) {
 
   const loadStats = async () => {
     const token = await auth.currentUser.getIdToken();
-    const res = await fetch(`/api/habits/stats/${id}/${range}`, {
+
+    const res = await fetch(`${API_URL}/api/habits/stats/${id}/${range}`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
     setStats(await res.json());
   };
 
