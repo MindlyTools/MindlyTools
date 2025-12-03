@@ -1,3 +1,77 @@
+.homeContainer {
+  width: 100%;
+}
+
+/* Tool Content Page */
+.toolContentView {
+  min-height: calc(100vh - 120px);
+  padding: 2rem;
+  color: white;
+}
+
+.toolHeader {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.backButton {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: translateX(-3px);
+}
+
+.toolTitle {
+  font-size: 2.2rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.toolIcon {
+  font-size: 2.5rem;
+}
+
+.toolContentContainer {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 20px;
+  padding: 2rem;
+  min-height: 500px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.noToolSelected {
+  text-align: center;
+  padding: 4rem 2rem;
+  opacity: 0.8;
+}
+
+.comingSoon {
+  text-align: center;
+  padding: 4rem 2rem;
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 15px;
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
 /* Hero Section */
 .heroSection {
   padding: 4rem 2rem;
