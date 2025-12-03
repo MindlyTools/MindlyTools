@@ -1,11 +1,7 @@
-import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import styles from "../styles/calculator.module.css";
-import Header from "./Header";
-import Footer from "./Footer";
 
 export default function Calculator() {
-  const navigate = useNavigate();
   const [input, setInput] = useState("");
 
   const handleClick = (value) => {
@@ -56,137 +52,120 @@ export default function Calculator() {
   };
 
   return (
-    <>
-      <Header />
+    <div className={styles["calc-container"]}>
+      <div className={styles["calc-display"]}>{input || "0"}</div>
 
-      <div className={styles["calc-background"]}>
-        <div>
+      <div className={styles["calc-buttons"]}>
+        <button
+          className={styles.button}
+          onClick={() => handleAdvanced("percent")}
+        >
+          %
+        </button>
+
+        <button
+          className={styles.button}
+          onClick={() => handleAdvanced("sqrt")}
+        >
+          √
+        </button>
+
+        <button
+          className={styles.button}
+          onClick={() => handleAdvanced("square")}
+        >
+          x²
+        </button>
+
+        <button
+          className={styles.button}
+          onClick={() => handleAdvanced("inverse")}
+        >
+          1/x
+        </button>
+
+        <button
+          className={`${styles.button} ${styles["C-button"]}`}
+          onClick={clearInput}
+        >
+          C
+        </button>
+
+        <button className={styles.button} onClick={deleteLast}>
+          ⌫
+        </button>
+
+        <button
+          className={styles.button}
+          onClick={() => handleAdvanced("negate")}
+        >
+          ±
+        </button>
+
+        <button className={styles.button} onClick={() => handleClick("/")}>
+          ÷
+        </button>
+
+        {[7, 8, 9].map((n) => (
           <button
-            className={`${styles.button} ${styles["calc-back-btn"]}`}
-            onClick={() => navigate("/")}
+            key={n}
+            className={styles.button}
+            onClick={() => handleClick(n)}
           >
-            ↩ Main menu
+            {n}
           </button>
-        </div>
+        ))}
 
-        <div className={styles["calc-container"]}>
-          <div className={styles["calc-display"]}>{input || "0"}</div>
+        <button className={styles.button} onClick={() => handleClick("*")}>
+          ×
+        </button>
 
-          <div className={styles["calc-buttons"]}>
-            <button
-              className={styles.button}
-              onClick={() => handleAdvanced("percent")}
-            >
-              %
-            </button>
+        {[4, 5, 6].map((n) => (
+          <button
+            key={n}
+            className={styles.button}
+            onClick={() => handleClick(n)}
+          >
+            {n}
+          </button>
+        ))}
 
-            <button
-              className={styles.button}
-              onClick={() => handleAdvanced("sqrt")}
-            >
-              √
-            </button>
+        <button className={styles.button} onClick={() => handleClick("-")}>
+          −
+        </button>
 
-            <button
-              className={styles.button}
-              onClick={() => handleAdvanced("square")}
-            >
-              x²
-            </button>
+        {[1, 2, 3].map((n) => (
+          <button
+            key={n}
+            className={styles.button}
+            onClick={() => handleClick(n)}
+          >
+            {n}
+          </button>
+        ))}
 
-            <button
-              className={styles.button}
-              onClick={() => handleAdvanced("inverse")}
-            >
-              1/x
-            </button>
+        <button className={styles.button} onClick={() => handleClick("+")}>
+          +
+        </button>
 
-            <button
-              className={`${styles.button} ${styles["C-button"]}`}
-              onClick={clearInput}
-            >
-              C
-            </button>
+        <button
+          className={`${styles.button} ${styles.zero}`}
+          onClick={() => handleClick("0")}
+        >
+          0
+        </button>
 
-            <button className={styles.button} onClick={deleteLast}>
-              ⌫
-            </button>
+        <button className={styles.button} onClick={() => handleClick(".")}>
+          .
+        </button>
 
-            <button
-              className={styles.button}
-              onClick={() => handleAdvanced("negate")}
-            >
-              ±
-            </button>
-
-            <button className={styles.button} onClick={() => handleClick("/")}>
-              ÷
-            </button>
-
-            {[7, 8, 9].map((n) => (
-              <button
-                key={n}
-                className={styles.button}
-                onClick={() => handleClick(n)}
-              >
-                {n}
-              </button>
-            ))}
-
-            <button className={styles.button} onClick={() => handleClick("*")}>
-              ×
-            </button>
-
-            {[4, 5, 6].map((n) => (
-              <button
-                key={n}
-                className={styles.button}
-                onClick={() => handleClick(n)}
-              >
-                {n}
-              </button>
-            ))}
-
-            <button className={styles.button} onClick={() => handleClick("-")}>
-              −
-            </button>
-
-            {[1, 2, 3].map((n) => (
-              <button
-                key={n}
-                className={styles.button}
-                onClick={() => handleClick(n)}
-              >
-                {n}
-              </button>
-            ))}
-
-            <button className={styles.button} onClick={() => handleClick("+")}>
-              +
-            </button>
-
-            <button
-              className={`${styles.button} ${styles.zero}`}
-              onClick={() => handleClick("0")}
-            >
-              0
-            </button>
-
-            <button className={styles.button} onClick={() => handleClick(".")}>
-              .
-            </button>
-
-            <button
-              className={`${styles.button} ${styles.equal}`}
-              onClick={calculate}
-            >
-              =
-            </button>
-          </div>
-        </div>
+        <button
+          className={`${styles.button} ${styles.equal}`}
+          onClick={calculate}
+        >
+          =
+        </button>
       </div>
-
-      <Footer />
-    </>
+    </div>
   );
 }

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
-import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
-import "../styles/habits.css";
+import styles from "../styles/habits.module.css";
 
 export default function HabitTracker({ user }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
@@ -98,29 +97,24 @@ export default function HabitTracker({ user }) {
   }, []);
 
   return (
-    <div className="habit-container">
-      <Sidebar
-        user={user}
-        sidebarOpen={sidebarOpen}
-        setSidebarOpen={setSidebarOpen}
-      />
-
-      <div className="habit-content">
+    <div className={styles.habitContainer}>
+      <div className={styles.habitContent}>
         <h1>Habit Tracker</h1>
 
-        <div className="habit-input-row">
+        <div className={styles.habitInputRow}>
           <input
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="New habit..."
-            className="habit-input"
+            className={styles.habitInput}
+            onKeyPress={(e) => e.key === "Enter" && addHabit()}
           />
-          <button className="habit-add-btn" onClick={addHabit}>
-            Add
+          <button className={styles.habitAddBtn} onClick={addHabit}>
+            Add Habit
           </button>
         </div>
 
-        <div className="habit-list">
+        <div className={styles.habitList}>
           {Object.entries(habits).map(([id, h]) => {
             const streak = getStreak(id);
             const history = getHistory(id);
@@ -128,8 +122,8 @@ export default function HabitTracker({ user }) {
             const completedToday = logs[id]?.[today];
 
             return (
-              <div key={id} className="habit-card">
-                <div className="habit-card-header">
+              <div key={id} className={styles.habitCard}>
+                <div className={styles.habitCardHeader}>
                   <h3>{h.name}</h3>
 
                   <input
@@ -139,15 +133,20 @@ export default function HabitTracker({ user }) {
                   />
                 </div>
 
-                <div className="habit-streak">
+                <div className={styles.habitStreak}>
                   🔥 Streak: <b>{streak}</b> days
                 </div>
 
-                <div className="habit-history">
+                <div className={styles.habitHistory}>
                   {history.map((day, idx) => (
                     <div
                       key={idx}
-                      className={`history-dot ${day ? "on" : "off"}`}
+                      className={`${styles.historyDot} ${
+                        day ? styles.on : styles.off
+                      }`}
+                      title={`Day ${idx + 1}: ${
+                        day ? "Completed" : "Not completed"
+                      }`}
                     />
                   ))}
                 </div>
