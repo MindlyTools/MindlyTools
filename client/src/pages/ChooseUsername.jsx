@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { auth } from "../firebase";
+import "../styles/chooseusername.css";
 
 export default function ChooseUsername({ onComplete }) {
   const [username, setUsername] = useState("");

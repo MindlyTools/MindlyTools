@@ -1,0 +1,85 @@
+.choose-username-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0a385c;
+  padding: 20px;
+}
+
+.choose-username-box {
+  background: rgba(255, 255, 255, 0.05);
+  width: 100%;
+  max-width: 380px;
+  padding: 30px;
+  border-radius: 12px;
+  border: 2px solid #ffffff1a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.choose-username-box h2 {
+  margin-bottom: 10px;
+  font-size: 1.6rem;
+  color: #ffffffe6;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.choose-username-box p {
+  margin-bottom: 20px;
+  font-size: 0.95rem;
+  color: #ffffffcc;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.choose-username-box input {
+  width: 100%;
+  padding: 12px;
+  font-size: 1rem;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #ffffff33;
+  border-radius: 6px;
+  outline: none;
+  color: #ffffffe6;
+  transition: border 0.2s ease, background 0.2s ease;
+  margin-bottom: 10px;
+}
+
+.choose-username-box input::placeholder {
+  color: #ffffff80;
+}
+
+.choose-username-box input:focus {
+  border-color: #ffffffa8;
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.error {
+  color: #ff6b6b;
+  font-size: 0.9rem;
+  margin-bottom: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.choose-username-box button {
+  width: 100%;
+  padding: 12px;
+  background: #ffffffcc;
+  border: none;
+  color: #0a385c;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.choose-username-box button:hover:not(:disabled) {
+  opacity: 0.9;
+  transform: translateY(-2px);
+}
+
+.choose-username-box button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

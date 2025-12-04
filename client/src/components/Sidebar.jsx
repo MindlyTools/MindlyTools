@@ -23,8 +23,8 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
     navigate("/profile");
   };
 
-  const about = async () => {
-    window.location.href = "/about";
+  const home = async () => {
+    navigate("/");
   };
 
   const closeSidebar = () => {
@@ -77,8 +77,8 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
         )}
 
         {sidebarOpen && (
-          <button className={styles.sidebarBtn} onClick={about}>
-            About
+          <button className={styles.sidebarBtn} onClick={home}>
+            Home
           </button>
         )}
 

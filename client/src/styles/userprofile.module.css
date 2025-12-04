@@ -1,20 +1,46 @@
+.userprofilePictureSection {
+  position: relative;
+  width: 150px;
+  margin: 0 auto 20px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .userprofilePictureSection img {
   height: 150px;
   width: 150px;
   border-radius: 50%;
   border: 2px solid black;
-  margin-bottom: 20px;
+  object-fit: cover;
+}
+
+.userprofileFileInput {
+  display: none;
 }
 
 .changeprofilePictureIcon {
-  border: 1px solid black;
   position: absolute;
-  top: 150px;
-  right: 150px;
-  border-radius: 50%;
-  padding: 0px 3px 8px 3px;
-  font-size: 23px;
+  bottom: 5px;
+  right: 5px;
+
   background-color: #00223c;
+  border: 2px solid #ffffff66;
+  border-radius: 50%;
+  padding: 6px 8px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s ease;
+}
+
+.changeprofilePictureIcon:hover {
+  transform: scale(1.1);
 }
 
 .profileBackgroung {
