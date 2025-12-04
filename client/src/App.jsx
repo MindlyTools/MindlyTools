@@ -6,6 +6,7 @@ import { auth } from "./firebase";
 import Login from "./pages/Login";
 import Home from "./pages/Home";
 import ChooseUsername from "./pages/ChooseUsername";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const [firebaseUser, setFirebaseUser] = useState(null);
@@ -60,6 +61,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home user={backendUser} />} />
+        <Route path="/profile" element={<UserProfile user={backendUser} />} />
       </Routes>
     </BrowserRouter>
   );

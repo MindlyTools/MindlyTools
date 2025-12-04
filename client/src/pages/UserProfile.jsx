@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
+import Layout from "../components/Layout";
 import Sidebar from "../components/Sidebar";
 import { auth } from "../firebase";
 import styles from "../styles/userprofile.module.css";
 import { useRef } from "react";
 
 export default function UserProfile({ user }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const [username, setUsername] = useState(user?.username || "");
   const [picture, setPicture] = useState(user?.picture || "");
   const [preview, setPreview] = useState("");
@@ -65,7 +66,7 @@ export default function UserProfile({ user }) {
   };
 
   return (
-    <>
+    <Layout user={user}>
       <div className={styles.profileBackgroung}>
         <div className={styles.profileGridOverlay}></div>
         <Sidebar
@@ -120,6 +121,6 @@ export default function UserProfile({ user }) {
           </div>
         </div>
       </div>
-    </>
+    </Layout>
   );
 }
