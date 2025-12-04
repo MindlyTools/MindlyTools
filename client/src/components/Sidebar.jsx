@@ -32,13 +32,17 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
     <>
       {/* Backdrop */}
       <div
-        className={`${styles.sidebarBackdrop} ${sidebarOpen ? styles.active : ""}`}
+        className={`${styles.sidebarBackdrop} ${
+          sidebarOpen ? styles.active : ""
+        }`}
         onClick={closeSidebar}
       />
 
       {/* Sidebar */}
       <div
-        className={`${styles.sidebar} ${sidebarOpen ? styles.open : styles.collapsed}`}
+        className={`${styles.sidebar} ${
+          sidebarOpen ? styles.open : styles.collapsed
+        }`}
         style={{ paddingTop: "90px" }}
       >
         {/* Profile Picture */}
@@ -54,7 +58,9 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
 
         {/* Username */}
         {sidebarOpen && (
-          <h3 className={styles.sidebarUsername}>{user?.username || user?.name}</h3>
+          <h3 className={styles.sidebarUsername}>
+            {user?.username || user?.name}
+          </h3>
         )}
 
         {/* Timezone */}
