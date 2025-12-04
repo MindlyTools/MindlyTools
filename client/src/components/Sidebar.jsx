@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { auth } from "../firebase";
 import styles from "../styles/sidebar.module.css";
+import { useNavigate } from "react-router-dom";
 
 export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
+  const navigate = useNavigate();
   const [timezone, setTimezone] = useState("");
 
   useEffect(() => {
@@ -16,8 +18,9 @@ export default function Sidebar({ user, sidebarOpen, setSidebarOpen }) {
     window.location.href = "/";
   };
 
-  const profile = async () => {
-    window.location.href = "/profile";
+  const profile = async (e) => {
+    e.preventDefault();
+    navigate("/profile");
   };
 
   const about = async () => {
